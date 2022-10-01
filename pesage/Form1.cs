@@ -188,5 +188,15 @@ namespace pesage
                 //SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Conteneur WHERE id_client = " + comboBox9.SelectedValue, Connection);
             }
         }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
