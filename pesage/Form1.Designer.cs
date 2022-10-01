@@ -97,18 +97,6 @@
             this.clientserviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.client_serviceTableAdapter = new pesage.pesageDataSetTableAdapters.client_serviceTableAdapter();
             this.conteneurTableAdapter = new pesage.pesageDataSetTableAdapters.ConteneurTableAdapter();
-            this.dataTable1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataTable1TableAdapter = new pesage.pesageDataSetTableAdapters.DataTable1TableAdapter();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numserieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.poidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.libelleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expr1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expr2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expr3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expr4DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabTraitment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.conteneurBindingSource)).BeginInit();
@@ -124,7 +112,6 @@
             this.groupBox3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientserviceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -183,6 +170,7 @@
             this.button11.TabIndex = 19;
             this.button11.Text = "Imprimer";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // label11
             // 
@@ -637,20 +625,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.numserieDataGridViewTextBoxColumn,
-            this.edateDataGridViewTextBoxColumn,
-            this.poidDataGridViewTextBoxColumn,
-            this.libelleDataGridViewTextBoxColumn,
-            this.expr1DataGridViewTextBoxColumn,
-            this.nomDataGridViewTextBoxColumn,
-            this.expr2DataGridViewTextBoxColumn,
-            this.expr3DataGridViewTextBoxColumn,
-            this.expr4DataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.dataTable1BindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(7, 6);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -821,7 +796,6 @@
             this.button12.TabIndex = 1;
             this.button12.Text = "Send";
             this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // clientTableAdapter
             // 
@@ -847,85 +821,6 @@
             // conteneurTableAdapter
             // 
             this.conteneurTableAdapter.ClearBeforeFill = true;
-            // 
-            // dataTable1BindingSource
-            // 
-            this.dataTable1BindingSource.DataMember = "DataTable1";
-            this.dataTable1BindingSource.DataSource = this.pesageDataSet;
-            // 
-            // dataTable1TableAdapter
-            // 
-            this.dataTable1TableAdapter.ClearBeforeFill = true;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // numserieDataGridViewTextBoxColumn
-            // 
-            this.numserieDataGridViewTextBoxColumn.DataPropertyName = "num_serie";
-            this.numserieDataGridViewTextBoxColumn.HeaderText = "num_serie";
-            this.numserieDataGridViewTextBoxColumn.Name = "numserieDataGridViewTextBoxColumn";
-            this.numserieDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // edateDataGridViewTextBoxColumn
-            // 
-            this.edateDataGridViewTextBoxColumn.DataPropertyName = "e_date";
-            this.edateDataGridViewTextBoxColumn.HeaderText = "e_date";
-            this.edateDataGridViewTextBoxColumn.Name = "edateDataGridViewTextBoxColumn";
-            this.edateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // poidDataGridViewTextBoxColumn
-            // 
-            this.poidDataGridViewTextBoxColumn.DataPropertyName = "poid";
-            this.poidDataGridViewTextBoxColumn.HeaderText = "poid";
-            this.poidDataGridViewTextBoxColumn.Name = "poidDataGridViewTextBoxColumn";
-            this.poidDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // libelleDataGridViewTextBoxColumn
-            // 
-            this.libelleDataGridViewTextBoxColumn.DataPropertyName = "libelle";
-            this.libelleDataGridViewTextBoxColumn.HeaderText = "libelle";
-            this.libelleDataGridViewTextBoxColumn.Name = "libelleDataGridViewTextBoxColumn";
-            this.libelleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expr1DataGridViewTextBoxColumn
-            // 
-            this.expr1DataGridViewTextBoxColumn.DataPropertyName = "Expr1";
-            this.expr1DataGridViewTextBoxColumn.HeaderText = "Expr1";
-            this.expr1DataGridViewTextBoxColumn.Name = "expr1DataGridViewTextBoxColumn";
-            this.expr1DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nomDataGridViewTextBoxColumn
-            // 
-            this.nomDataGridViewTextBoxColumn.DataPropertyName = "nom";
-            this.nomDataGridViewTextBoxColumn.HeaderText = "nom";
-            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
-            this.nomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expr2DataGridViewTextBoxColumn
-            // 
-            this.expr2DataGridViewTextBoxColumn.DataPropertyName = "Expr2";
-            this.expr2DataGridViewTextBoxColumn.HeaderText = "Expr2";
-            this.expr2DataGridViewTextBoxColumn.Name = "expr2DataGridViewTextBoxColumn";
-            this.expr2DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expr3DataGridViewTextBoxColumn
-            // 
-            this.expr3DataGridViewTextBoxColumn.DataPropertyName = "Expr3";
-            this.expr3DataGridViewTextBoxColumn.HeaderText = "Expr3";
-            this.expr3DataGridViewTextBoxColumn.Name = "expr3DataGridViewTextBoxColumn";
-            this.expr3DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expr4DataGridViewTextBoxColumn
-            // 
-            this.expr4DataGridViewTextBoxColumn.DataPropertyName = "Expr4";
-            this.expr4DataGridViewTextBoxColumn.HeaderText = "Expr4";
-            this.expr4DataGridViewTextBoxColumn.Name = "expr4DataGridViewTextBoxColumn";
-            this.expr4DataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // MainWindow
             // 
@@ -959,7 +854,6 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientserviceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1034,18 +928,6 @@
         private pesageDataSetTableAdapters.ConteneurTableAdapter conteneurTableAdapter;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.BindingSource dataTable1BindingSource;
-        private pesageDataSetTableAdapters.DataTable1TableAdapter dataTable1TableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numserieDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn edateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn poidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn libelleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expr1DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expr2DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expr3DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expr4DataGridViewTextBoxColumn;
     }
 }
 
