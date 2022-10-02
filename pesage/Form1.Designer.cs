@@ -97,6 +97,7 @@
             this.clientserviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.client_serviceTableAdapter = new pesage.pesageDataSetTableAdapters.client_serviceTableAdapter();
             this.conteneurTableAdapter = new pesage.pesageDataSetTableAdapters.ConteneurTableAdapter();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabTraitment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.conteneurBindingSource)).BeginInit();
@@ -135,6 +136,7 @@
             // 
             // tabTraitment
             // 
+            this.tabTraitment.Controls.Add(this.textBox3);
             this.tabTraitment.Controls.Add(this.button11);
             this.tabTraitment.Controls.Add(this.label11);
             this.tabTraitment.Controls.Add(this.label10);
@@ -785,7 +787,6 @@
             this.button13.TabIndex = 4;
             this.button13.Text = "Send";
             this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button12
             // 
@@ -821,6 +822,15 @@
             // conteneurTableAdapter
             // 
             this.conteneurTableAdapter.ClearBeforeFill = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(1052, 123);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(535, 416);
+            this.textBox3.TabIndex = 20;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // MainWindow
             // 
@@ -928,6 +938,7 @@
         private pesageDataSetTableAdapters.ConteneurTableAdapter conteneurTableAdapter;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
