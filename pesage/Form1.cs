@@ -188,7 +188,6 @@ namespace pesage
             var output = renderEngine.ToZplString(new ZplRenderOptions { AddEmptyLineBeforeElementStart = true });
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {
-                
                 if (printer.Contains("GK420t"))
                 {
                     RawPrinterHelper.SendStringToPrinter(printer, output);
@@ -196,10 +195,6 @@ namespace pesage
             }
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
