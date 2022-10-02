@@ -102,6 +102,7 @@
             this.clientserviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.client_serviceTableAdapter = new pesage.pesageDataSetTableAdapters.client_serviceTableAdapter();
             this.conteneurTableAdapter = new pesage.pesageDataSetTableAdapters.ConteneurTableAdapter();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.dataTable1TableAdapter = new pesage.pesageDataSetTableAdapters.DataTable1TableAdapter();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -159,6 +160,7 @@
             // 
             // tabTraitment
             // 
+            this.tabTraitment.Controls.Add(this.textBox3);
             this.tabTraitment.Controls.Add(this.button17);
             this.tabTraitment.Controls.Add(this.button11);
             this.tabTraitment.Controls.Add(this.groupBox2);
@@ -184,6 +186,37 @@
             this.tabTraitment.Size = new System.Drawing.Size(1649, 742);
             this.tabTraitment.TabIndex = 0;
             this.tabTraitment.Text = "Traitment";
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(863, 339);
+            this.button11.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(125, 34);
+            this.button11.TabIndex = 19;
+            this.button11.Text = "Imprimer";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(205, 349);
+            this.label11.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(76, 19);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "15.00 KG";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(112, 349);
+            this.label10.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 19);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Poids :";
             // 
             // conteneurId
             // 
@@ -589,20 +622,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.numserieDataGridViewTextBoxColumn,
-            this.edateDataGridViewTextBoxColumn,
-            this.poidDataGridViewTextBoxColumn,
-            this.libelleDataGridViewTextBoxColumn,
-            this.expr1DataGridViewTextBoxColumn,
-            this.nomDataGridViewTextBoxColumn,
-            this.expr2DataGridViewTextBoxColumn,
-            this.expr3DataGridViewTextBoxColumn,
-            this.expr4DataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.dataTable1BindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(7, 6);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -836,7 +856,6 @@
             this.button13.TabIndex = 4;
             this.button13.Text = "Send";
             this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // button12
             // 
@@ -847,7 +866,6 @@
             this.button12.TabIndex = 1;
             this.button12.Text = "Send";
             this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // clientTableAdapter
             // 
@@ -874,6 +892,14 @@
             // 
             this.conteneurTableAdapter.ClearBeforeFill = true;
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(1052, 123);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(535, 416);
+            this.textBox3.TabIndex = 20;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // dataTable1TableAdapter
             // 
             this.dataTable1TableAdapter.ClearBeforeFill = true;
@@ -1163,6 +1189,7 @@
         private pesageDataSetTableAdapters.ConteneurTableAdapter conteneurTableAdapter;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.BindingSource dataTable1BindingSource;
         private pesageDataSetTableAdapters.DataTable1TableAdapter dataTable1TableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
