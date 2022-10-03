@@ -12,7 +12,7 @@ namespace pesage
     {
         // Structure and API declarions:
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-        public class DOCINFOA
+        public class Docinfoa
         {
             [MarshalAs(UnmanagedType.LPStr)] public string pDocName;
             [MarshalAs(UnmanagedType.LPStr)] public string pOutputFile;
@@ -25,7 +25,7 @@ namespace pesage
         public static extern bool ClosePrinter(IntPtr hPrinter);
 
         [DllImport("winspool.Drv", EntryPoint = "StartDocPrinterA", SetLastError = true, CharSet = CharSet.Ansi, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
-        public static extern bool StartDocPrinter(IntPtr hPrinter, Int32 level, [In, MarshalAs(UnmanagedType.LPStruct)] DOCINFOA di);
+        public static extern bool StartDocPrinter(IntPtr hPrinter, Int32 level, [In, MarshalAs(UnmanagedType.LPStruct)] Docinfoa di);
 
         [DllImport("winspool.Drv", EntryPoint = "EndDocPrinter", SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
         public static extern bool EndDocPrinter(IntPtr hPrinter);
@@ -47,7 +47,7 @@ namespace pesage
         {
             Int32 dwError = 0, dwWritten = 0;
             IntPtr hPrinter = new IntPtr(0);
-            DOCINFOA di = new DOCINFOA();
+            Docinfoa di = new Docinfoa();
             bool bSuccess = false; // Assume failure unless you specifically succeed.
             di.pDocName = "My C#.NET RAW Document";
             di.pDataType = "RAW";

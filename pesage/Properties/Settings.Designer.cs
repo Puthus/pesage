@@ -32,5 +32,16 @@ namespace pesage.Properties {
                 return ((string)(this["pesageConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TITAN-LEGION;Initial Catalog=pesage;integrated security=True;Multiple" +
+            "ActiveResultSets=True;App=EntityFramework")]
+        public string PesageConn {
+            get {
+                return ((string)(this["PesageConn"]));
+            }
+        }
     }
 }
