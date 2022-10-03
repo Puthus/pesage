@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.32804.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pesage", "pesage\pesage.csproj", "{345F4B75-DA23-4891-9A53-90089E6A4BEC}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{33042D48-038B-41E5-89B0-5A8056C1A498}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,9 @@ Global
 		{345F4B75-DA23-4891-9A53-90089E6A4BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{345F4B75-DA23-4891-9A53-90089E6A4BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{345F4B75-DA23-4891-9A53-90089E6A4BEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33042D48-038B-41E5-89B0-5A8056C1A498}.Debug|Any CPU.ActiveCfg = Debug
+		{33042D48-038B-41E5-89B0-5A8056C1A498}.Release|Any CPU.ActiveCfg = Release
+		{33042D48-038B-41E5-89B0-5A8056C1A498}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

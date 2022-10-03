@@ -4913,9 +4913,9 @@ namespace pesage.pesageDataSetTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT   C_Service.id, C_Service.libelle\r\nFROM         C_Service INNER JOIN\r\n    " +
-                "                     client_service ON C_Service.id = client_service.service_id\r" +
-                "\nWHERE     (client_service.client_id = @clientid)";
+            this._commandCollection[1].CommandText = "SELECT C_Service.id, C_Service.libelle FROM C_Service INNER JOIN client_service O" +
+                "N C_Service.id = client_service.service_id WHERE (client_service.client_id = @cl" +
+                "ientid)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clientid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "client_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -6320,9 +6320,8 @@ SELECT id, num_serie, e_date, poid, client_id, service_id, conteneur_id, residu_
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        client_id, conteneur_id, e_date, id, num_serie, operateur_id, poid," +
-                " residu_id, service_id\r\nFROM            Etiquette AS e\r\nWHERE        (num_serie " +
-                "LIKE @codebarre)";
+            this._commandCollection[1].CommandText = "SELECT client_id, conteneur_id, e_date, id, num_serie, operateur_id, poid, residu" +
+                "_id, service_id FROM Etiquette AS e WHERE (num_serie LIKE @codebarre)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codebarre", global::System.Data.SqlDbType.VarChar, 14, global::System.Data.ParameterDirection.Input, 0, 0, "num_serie", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

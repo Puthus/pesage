@@ -44,18 +44,18 @@ namespace pesage
 
         public Poids()
         {
-            this._isStable = false;
-            this._isNet = false;
-            this._tare = 0;
-            this._weight = 0;
+            _isStable = false;
+            _isNet = false;
+            _tare = 0;
+            _weight = 0;
         }
 
         public Poids(double w, bool stable, bool net, double t)
         {
-            this._isStable = stable;
-            this._isNet = net;
-            this._tare = t;
-            this._weight = w;
+            _isStable = stable;
+            _isNet = net;
+            _tare = t;
+            _weight = w;
         }
     }
 }

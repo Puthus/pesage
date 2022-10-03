@@ -43,5 +43,41 @@ namespace pesage.Properties {
                 return ((string)(this["PesageConn"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int xOffsetPrint {
+            get {
+                return ((int)(this["xOffsetPrint"]));
+            }
+            set {
+                this["xOffsetPrint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int yOffsetPrint {
+            get {
+                return ((int)(this["yOffsetPrint"]));
+            }
+            set {
+                this["yOffsetPrint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM1")]
+        public string comPort {
+            get {
+                return ((string)(this["comPort"]));
+            }
+            set {
+                this["comPort"] = value;
+            }
+        }
     }
 }

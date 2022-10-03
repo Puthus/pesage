@@ -105,6 +105,10 @@ namespace pesage
             this.dateFin = new System.Windows.Forms.DateTimePicker();
             this.dateDebut = new System.Windows.Forms.DateTimePicker();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.yOffsetNumeric = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
+            this.xOffsetNumeric = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.comPortBox = new System.Windows.Forms.ComboBox();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -144,6 +148,8 @@ namespace pesage
             ((System.ComponentModel.ISupportInitialize)(this.ticketsBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.yOffsetNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xOffsetNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientserviceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -268,6 +274,7 @@ namespace pesage
             this.operateurId.Size = new System.Drawing.Size(264, 27);
             this.operateurId.TabIndex = 27;
             this.operateurId.ValueMember = "id";
+            this.operateurId.SelectedIndexChanged += new System.EventHandler(this.operatorLib_SelectedIndexChanged);
             // 
             // operateurBindingSource
             // 
@@ -358,6 +365,7 @@ namespace pesage
             this.conteneurId.Size = new System.Drawing.Size(264, 27);
             this.conteneurId.TabIndex = 13;
             this.conteneurId.ValueMember = "id";
+            this.conteneurId.SelectedIndexChanged += new System.EventHandler(this.conteneurLib_SelectedIndexChanged);
             // 
             // conteneurBindingSource
             // 
@@ -376,6 +384,7 @@ namespace pesage
             this.residuId.Size = new System.Drawing.Size(264, 27);
             this.residuId.TabIndex = 14;
             this.residuId.ValueMember = "id";
+            this.residuId.SelectedIndexChanged += new System.EventHandler(this.residuLib_SelectedIndexChanged);
             // 
             // residuBindingSource
             // 
@@ -394,6 +403,7 @@ namespace pesage
             this.serviceId.Size = new System.Drawing.Size(264, 27);
             this.serviceId.TabIndex = 15;
             this.serviceId.ValueMember = "id";
+            this.serviceId.SelectedIndexChanged += new System.EventHandler(this.serviceLib_SelectedIndexChanged);
             // 
             // cServiceBindingSource
             // 
@@ -417,6 +427,7 @@ namespace pesage
             this.clientId.Size = new System.Drawing.Size(264, 27);
             this.clientId.TabIndex = 16;
             this.clientId.ValueMember = "id";
+            this.clientId.SelectedIndexChanged += new System.EventHandler(this.clientLib_SelectedIndexChanged);
             // 
             // clientBindingSource
             // 
@@ -615,6 +626,7 @@ namespace pesage
             this.cancel.TabIndex = 18;
             this.cancel.Text = "Annuler";
             this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
             // groupBox1
             // 
@@ -885,6 +897,9 @@ namespace pesage
             this.codeBarre.Name = "codeBarre";
             this.codeBarre.Size = new System.Drawing.Size(316, 28);
             this.codeBarre.TabIndex = 7;
+            this.codeBarre.Click += new System.EventHandler(this.codeBarre_Click);
+            this.codeBarre.TextChanged += new System.EventHandler(this.codeBarre_TextChanged);
+            this.codeBarre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codeBarre_KeyPress);
             // 
             // label12
             // 
@@ -949,6 +964,7 @@ namespace pesage
             // 
             // dateDebut
             // 
+            this.dateDebut.Checked = false;
             this.dateDebut.Location = new System.Drawing.Point(121, 30);
             this.dateDebut.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dateDebut.Name = "dateDebut";
@@ -957,6 +973,10 @@ namespace pesage
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.yOffsetNumeric);
+            this.tabPage4.Controls.Add(this.label19);
+            this.tabPage4.Controls.Add(this.xOffsetNumeric);
+            this.tabPage4.Controls.Add(this.label16);
             this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.comPortBox);
             this.tabPage4.Location = new System.Drawing.Point(4, 43);
@@ -967,6 +987,38 @@ namespace pesage
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Config";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // yOffsetNumeric
+            // 
+            this.yOffsetNumeric.Location = new System.Drawing.Point(175, 106);
+            this.yOffsetNumeric.Name = "yOffsetNumeric";
+            this.yOffsetNumeric.Size = new System.Drawing.Size(120, 28);
+            this.yOffsetNumeric.TabIndex = 20;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(62, 113);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(91, 21);
+            this.label19.TabIndex = 19;
+            this.label19.Text = "Y Offset :";
+            // 
+            // xOffsetNumeric
+            // 
+            this.xOffsetNumeric.Location = new System.Drawing.Point(175, 69);
+            this.xOffsetNumeric.Name = "xOffsetNumeric";
+            this.xOffsetNumeric.Size = new System.Drawing.Size(120, 28);
+            this.xOffsetNumeric.TabIndex = 18;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(62, 76);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(91, 21);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "X Offset :";
             // 
             // label11
             // 
@@ -983,7 +1035,7 @@ namespace pesage
             this.comPortBox.Location = new System.Drawing.Point(175, 34);
             this.comPortBox.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.comPortBox.Name = "comPortBox";
-            this.comPortBox.Size = new System.Drawing.Size(437, 28);
+            this.comPortBox.Size = new System.Drawing.Size(120, 28);
             this.comPortBox.TabIndex = 7;
             // 
             // idDataGridViewTextBoxColumn
@@ -1101,10 +1153,12 @@ namespace pesage
             this.ClientSize = new System.Drawing.Size(1078, 837);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Inter", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "MainWindow";
-            this.Text = " ";
+            this.Text = "Saiss env";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabTraitment.ResumeLayout(false);
@@ -1130,6 +1184,8 @@ namespace pesage
             this.groupBox3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.yOffsetNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xOffsetNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientserviceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -1231,6 +1287,10 @@ namespace pesage
         private System.Windows.Forms.DataGridViewTextBoxColumn operateurDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource ticketsBindingSource;
         private pesageDataSetTableAdapters.EtiquetteTableAdapter etiquetteTableAdapter;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown xOffsetNumeric;
+        private System.Windows.Forms.NumericUpDown yOffsetNumeric;
+        private System.Windows.Forms.Label label19;
     }
 }
 
