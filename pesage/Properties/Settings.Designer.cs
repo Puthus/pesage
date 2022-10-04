@@ -26,21 +26,10 @@ namespace pesage.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TITAN-LEGION;Initial Catalog=pesage;Integrated Security=True")]
-        public string pesageConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=pesage;Integrated Security=True")]
+        public string pesageConn {
             get {
-                return ((string)(this["pesageConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TITAN-LEGION;Initial Catalog=pesage;integrated security=True;Multiple" +
-            "ActiveResultSets=True;App=EntityFramework")]
-        public string PesageConn {
-            get {
-                return ((string)(this["PesageConn"]));
+                return ((string)(this["pesageConn"]));
             }
         }
         
@@ -77,6 +66,18 @@ namespace pesage.Properties {
             }
             set {
                 this["comPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("(\\w*)?,?(\\w*)?,?([+-]?([0-9]*[.])?[0-9]+)(\\w*)")]
+        public string regex {
+            get {
+                return ((string)(this["regex"]));
+            }
+            set {
+                this["regex"] = value;
             }
         }
     }

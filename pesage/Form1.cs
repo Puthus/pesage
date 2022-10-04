@@ -22,13 +22,12 @@ namespace pesage
         private readonly PrivateFontCollection _fonts = new PrivateFontCollection();
         private readonly Font _myFont;
         private readonly Poids _weight;
-        private SqlConnection _conn;
+        private readonly SqlConnection _conn = new SqlConnection(Settings.Default.pesageConn);
         private DataSet _ds;
         private bool _isInserting;
         private bool _isCanceled;
+        private readonly List<KeyValuePair<string, dynamic>> _pessageAdapters = new List<KeyValuePair<string, dynamic>>();
 
-        private readonly List<KeyValuePair<string, dynamic>> _pessageAdapters =
-            new List<KeyValuePair<string, dynamic>>();
 
         private Thread _readThread;
         private SerialPort _serialPort1;
@@ -37,7 +36,6 @@ namespace pesage
         public MainWindow()
         {
             InitializeComponent();
-
             var fontData = Resources.Inter_font;
             var fontPtr = Marshal.AllocCoTaskMem(fontData.Length);
             Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
@@ -50,11 +48,13 @@ namespace pesage
         }
 
         [DllImport("gdi32.dll")]
-        private static extern IntPtr
-            AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            //FONT
+            foreach (Control c in Controls) c.Font = _myFont;
+
             residuTableAdapter.Fill(pesageDataSet.Residu);
             clientTableAdapter.Fill(pesageDataSet.Client);
             c_ServiceTableAdapter.Fill(pesageDataSet.C_Service);
@@ -69,66 +69,49 @@ namespace pesage
             _pessageAdapters.Add(new KeyValuePair<string, dynamic>("client_service", client_serviceTableAdapter));
             xOffsetNumeric.Value = Settings.Default.xOffsetPrint;
             yOffsetNumeric.Value = Settings.Default.yOffsetPrint;
-            //setting the font to inter
+            regexTxt.Text = Settings.Default.regex;
+
             try
             {
-                _conn = new SqlConnection(Settings.Default.pesageConnectionString);
                 _conn.Open();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(@"Connection to database failed!",ex.Message);
+                MessageBox.Show(@"Connection to database failed! Line 75"+'\n'+ex.Message);
             }
             if (clientLib.SelectedValue != null)
                 try
                 {
-                    c_ServiceTableAdapter.FillBy(pesageDataSet.C_Service,
-                        (int)Convert.ChangeType(clientLib.SelectedValue, typeof(int)));
-                    GenerateCodeBarre();
+                    c_ServiceTableAdapter.FillBy(pesageDataSet.C_Service, Convert.ToInt32(clientLib.SelectedValue));
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(@"Error Filling Client services Line 84"+'\n'+ ex.Message);
                 }
 
-            foreach (Control c in Controls) c.Font = _myFont;
+            foreach (var portName in SerialPort.GetPortNames()) 
+                comPortBox.Items.Add(portName);
 
-            var portNames = SerialPort.GetPortNames();
-            foreach (var portName in portNames) comPortBox.Items.Add(portName);
+            if (comPortBox.Items.Count <= 0) return;
+            
+            comPortBox.SelectedIndex = 0;
+            _readThread = new Thread(Read);
+            _serialPort1 = new SerialPort(comPortBox.Text);
+            _serialPort1.ReadTimeout = 500;
+            _serialPort1.WriteTimeout = 500;
 
-            if (comPortBox.Items.Count > 0)
-            {
-                comPortBox.SelectedIndex = 0;
-                _serialPort1 = new SerialPort();
-                _readThread = new Thread(Read);
-                //// Allow the user to set the appropriate properties.
-                _serialPort1.PortName = comPortBox.Text;
-
-                //// Set the read/write timeouts
-                _serialPort1.ReadTimeout = 500;
-                _serialPort1.WriteTimeout = 500;
-
-                try
-                {
-                    _serialPort1.Open();
-                    _readThread.Start();
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.MessageBox.Show(ex.ToString());
-                }
-            }
-
-            _conn = new SqlConnection(
-                $"Data Source={Environment.MachineName};Initial Catalog=pesage;Integrated Security=True");
             try
             {
-                _conn.Open();
+                _serialPort1.Open();
+                _readThread.Start();
             }
-            catch (Exception exception)
+            catch (UnauthorizedAccessException ex)
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show($@"Error Opening COM Port {_serialPort1.PortName}" + '\n' + ex.Message);
+            }
+            catch (OutOfMemoryException ex)
+            {
+                MessageBox.Show($@"Error Opening Thread, you are out of memory" + '\n' + ex.Message);
             }
         }
 
@@ -136,6 +119,7 @@ namespace pesage
         {
             Settings.Default.xOffsetPrint = (int)xOffsetNumeric.Value;
             Settings.Default.yOffsetPrint = (int)yOffsetNumeric.Value;
+            Settings.Default.comPort = comPortBox.Text;
             Settings.Default.Save();
         }
 

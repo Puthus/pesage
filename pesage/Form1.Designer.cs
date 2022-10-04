@@ -130,6 +130,9 @@ namespace pesage
             this.conteneurTableAdapter = new pesage.pesageDataSetTableAdapters.ConteneurTableAdapter();
             this.operateurTableAdapter = new pesage.pesageDataSetTableAdapters.OperateurTableAdapter();
             this.etiquetteTableAdapter = new pesage.pesageDataSetTableAdapters.EtiquetteTableAdapter();
+            this.saveConf = new System.Windows.Forms.Button();
+            this.regexTxt = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabTraitment.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -973,6 +976,9 @@ namespace pesage
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label20);
+            this.tabPage4.Controls.Add(this.regexTxt);
+            this.tabPage4.Controls.Add(this.saveConf);
             this.tabPage4.Controls.Add(this.yOffsetNumeric);
             this.tabPage4.Controls.Add(this.label19);
             this.tabPage4.Controls.Add(this.xOffsetNumeric);
@@ -1145,6 +1151,32 @@ namespace pesage
             // 
             this.etiquetteTableAdapter.ClearBeforeFill = true;
             // 
+            // saveConf
+            // 
+            this.saveConf.Location = new System.Drawing.Point(66, 181);
+            this.saveConf.Name = "saveConf";
+            this.saveConf.Size = new System.Drawing.Size(101, 36);
+            this.saveConf.TabIndex = 21;
+            this.saveConf.Text = "Save";
+            this.saveConf.UseVisualStyleBackColor = true;
+            // 
+            // regexTxt
+            // 
+            this.regexTxt.Location = new System.Drawing.Point(175, 140);
+            this.regexTxt.Name = "regexTxt";
+            this.regexTxt.ReadOnly = true;
+            this.regexTxt.Size = new System.Drawing.Size(392, 28);
+            this.regexTxt.TabIndex = 22;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(62, 143);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(78, 21);
+            this.label20.TabIndex = 23;
+            this.label20.Text = "Regex : ";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -1291,6 +1323,9 @@ namespace pesage
         private System.Windows.Forms.NumericUpDown xOffsetNumeric;
         private System.Windows.Forms.NumericUpDown yOffsetNumeric;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox regexTxt;
+        private System.Windows.Forms.Button saveConf;
     }
 }
 

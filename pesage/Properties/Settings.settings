@@ -2,21 +2,13 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="pesage.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="pesageConnectionString" Type="(Connection string)" Scope="Application">
+    <Setting Name="pesageConn" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Data Source=TITAN-LEGION;Initial Catalog=pesage;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=localhost;Initial Catalog=pesage;Integrated Security=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=TITAN-LEGION;Initial Catalog=pesage;Integrated Security=True</Value>
-    </Setting>
-    <Setting Name="PesageConn" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Data Source=TITAN-LEGION;Initial Catalog=pesage;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=TITAN-LEGION;Initial Catalog=pesage;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework</Value>
+      <Value Profile="(Default)">Data Source=localhost;Initial Catalog=pesage;Integrated Security=True</Value>
     </Setting>
     <Setting Name="xOffsetPrint" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -26,6 +18,9 @@
     </Setting>
     <Setting Name="comPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM1</Value>
+    </Setting>
+    <Setting Name="regex" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(\w*)?,?(\w*)?,?([+-]?([0-9]*[.])?[0-9]+)(\w*)</Value>
     </Setting>
   </Settings>
 </SettingsFile>

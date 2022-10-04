@@ -4900,7 +4900,7 @@ namespace pesage.pesageDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConnectionString;
+            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5250,7 +5250,7 @@ namespace pesage.pesageDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConnectionString;
+            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5583,7 +5583,7 @@ SELECT id, client_id, service_id FROM client_service WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConnectionString;
+            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5935,7 +5935,7 @@ SELECT id, client_id, service_id FROM client_service WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConnectionString;
+            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6306,7 +6306,7 @@ SELECT id, num_serie, e_date, poid, client_id, service_id, conteneur_id, residu_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConnectionString;
+            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6885,7 +6885,7 @@ SELECT id, num_serie, e_date, poid, client_id, service_id, conteneur_id, residu_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConnectionString;
+            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7209,7 +7209,7 @@ SELECT id, num_serie, e_date, poid, client_id, service_id, conteneur_id, residu_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConnectionString;
+            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7540,7 +7540,7 @@ SELECT id, nom, mdp FROM Utilisateur WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConnectionString;
+            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7873,7 +7873,7 @@ SELECT id, nom, mdp FROM Utilisateur WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConnectionString;
+            this._connection.ConnectionString = global::pesage.Properties.Settings.Default.pesageConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
