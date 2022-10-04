@@ -206,7 +206,7 @@ namespace pesage
             elements.Add(new ZplTextField($@"Conteneur : {conteneurLib.Text}", x , y * 4 + yoffset, font));
             elements.Add(new ZplTextField($@"Poids : {weightLib.Text}"       , x , y * 5 + yoffset, font));
             elements.Add(new ZplTextField($@"Date : {DateTime.Now}"          , x , y * 6 + yoffset, font));
-            elements.Add(new ZplBarcode128(codeBarreLib.Text                 , x + 48 , y * 8 + yoffset));
+            elements.Add(new ZplBarcode128(codeBarreLib.Text                 , x + 20 , y * 8 + yoffset));
             var renderEngine = new ZplEngine(elements);
             var output = renderEngine.ToZplString(new ZplRenderOptions { AddEmptyLineBeforeElementStart = true });
             foreach (string printer in PrinterSettings.InstalledPrinters)
@@ -465,6 +465,11 @@ namespace pesage
             dataGridView2.DataSource = new DataSet();
             dataGridView2.Refresh();
             _isCanceled = true;
+        }
+
+        private void tabTraitment_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

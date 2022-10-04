@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pesage", "pesage\pesage.csp
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{33042D48-038B-41E5-89B0-5A8056C1A498}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data Export", "Data Export\Data Export.csproj", "{6B2E262C-54C7-4B15-9D7E-D9793B5B2CB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{33042D48-038B-41E5-89B0-5A8056C1A498}.Debug|Any CPU.ActiveCfg = Debug
 		{33042D48-038B-41E5-89B0-5A8056C1A498}.Release|Any CPU.ActiveCfg = Release
 		{33042D48-038B-41E5-89B0-5A8056C1A498}.Release|Any CPU.Build.0 = Release
+		{6B2E262C-54C7-4B15-9D7E-D9793B5B2CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B2E262C-54C7-4B15-9D7E-D9793B5B2CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B2E262C-54C7-4B15-9D7E-D9793B5B2CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B2E262C-54C7-4B15-9D7E-D9793B5B2CB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
