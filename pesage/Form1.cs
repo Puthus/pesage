@@ -180,7 +180,7 @@ namespace pesage
                     }
                     catch (IOException ex)
                     {
-                        //Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.Message);
                     }
 
                 }

@@ -164,7 +164,7 @@ namespace pesage
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Inter", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.tabControl1.Multiline = true;
@@ -194,7 +194,7 @@ namespace pesage
             this.tabTraitment.Controls.Add(this.label3);
             this.tabTraitment.Controls.Add(this.label2);
             this.tabTraitment.Controls.Add(this.label1);
-            this.tabTraitment.Font = new System.Drawing.Font("Inter", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabTraitment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabTraitment.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabTraitment.Location = new System.Drawing.Point(4, 43);
             this.tabTraitment.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
@@ -203,11 +203,12 @@ namespace pesage
             this.tabTraitment.Size = new System.Drawing.Size(1070, 790);
             this.tabTraitment.TabIndex = 0;
             this.tabTraitment.Text = "Traitment";
+            this.tabTraitment.Click += new System.EventHandler(this.tabTraitment_Click);
             // 
             // saveTicket
             // 
             this.saveTicket.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.saveTicket.Font = new System.Drawing.Font("Inter", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveTicket.Location = new System.Drawing.Point(876, 654);
             this.saveTicket.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.saveTicket.Name = "saveTicket";
@@ -252,7 +253,7 @@ namespace pesage
             this.codeBarreLib.Location = new System.Drawing.Point(141, 251);
             this.codeBarreLib.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.codeBarreLib.Name = "codeBarreLib";
-            this.codeBarreLib.Size = new System.Drawing.Size(129, 19);
+            this.codeBarreLib.Size = new System.Drawing.Size(117, 20);
             this.codeBarreLib.TabIndex = 29;
             this.codeBarreLib.Text = "############";
             // 
@@ -262,7 +263,7 @@ namespace pesage
             this.label18.Location = new System.Drawing.Point(21, 252);
             this.label18.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(104, 19);
+            this.label18.Size = new System.Drawing.Size(96, 20);
             this.label18.TabIndex = 28;
             this.label18.Text = "Code barre :";
             // 
@@ -275,7 +276,7 @@ namespace pesage
             this.operateurId.Location = new System.Drawing.Point(653, 182);
             this.operateurId.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.operateurId.Name = "operateurId";
-            this.operateurId.Size = new System.Drawing.Size(264, 27);
+            this.operateurId.Size = new System.Drawing.Size(264, 28);
             this.operateurId.TabIndex = 27;
             this.operateurId.ValueMember = "id";
             this.operateurId.SelectedIndexChanged += new System.EventHandler(this.operatorLib_SelectedIndexChanged);
@@ -296,7 +297,7 @@ namespace pesage
             this.tareLib.Location = new System.Drawing.Point(551, 93);
             this.tareLib.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.tareLib.Name = "tareLib";
-            this.tareLib.Size = new System.Drawing.Size(79, 19);
+            this.tareLib.Size = new System.Drawing.Size(76, 20);
             this.tareLib.TabIndex = 26;
             this.tareLib.Text = "00.00 KG";
             // 
@@ -309,7 +310,7 @@ namespace pesage
             this.operateurLib.Location = new System.Drawing.Point(133, 182);
             this.operateurLib.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.operateurLib.Name = "operateurLib";
-            this.operateurLib.Size = new System.Drawing.Size(484, 27);
+            this.operateurLib.Size = new System.Drawing.Size(484, 28);
             this.operateurLib.TabIndex = 26;
             this.operateurLib.ValueMember = "id";
             this.operateurLib.SelectedIndexChanged += new System.EventHandler(this.operatorLib_SelectedIndexChanged);
@@ -320,7 +321,7 @@ namespace pesage
             this.label17.Location = new System.Drawing.Point(21, 186);
             this.label17.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(85, 19);
+            this.label17.Size = new System.Drawing.Size(81, 20);
             this.label17.TabIndex = 25;
             this.label17.Text = "Operateur";
             // 
@@ -330,7 +331,7 @@ namespace pesage
             this.label15.Location = new System.Drawing.Point(493, 93);
             this.label15.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(51, 19);
+            this.label15.Size = new System.Drawing.Size(49, 20);
             this.label15.TabIndex = 25;
             this.label15.Text = "Tare :";
             // 
@@ -338,12 +339,12 @@ namespace pesage
             // 
             this.weightLib.AutoSize = true;
             this.weightLib.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.weightLib.Font = new System.Drawing.Font("Tw Cen MT", 52F, System.Drawing.FontStyle.Bold);
+            this.weightLib.Font = new System.Drawing.Font("Microsoft Sans Serif", 52F, System.Drawing.FontStyle.Bold);
             this.weightLib.ForeColor = System.Drawing.SystemColors.Control;
             this.weightLib.Location = new System.Drawing.Point(133, 61);
             this.weightLib.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.weightLib.Name = "weightLib";
-            this.weightLib.Size = new System.Drawing.Size(312, 81);
+            this.weightLib.Size = new System.Drawing.Size(337, 79);
             this.weightLib.TabIndex = 21;
             this.weightLib.Text = "00.00 KG";
             // 
@@ -353,7 +354,7 @@ namespace pesage
             this.label10.Location = new System.Drawing.Point(21, 94);
             this.label10.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(52, 19);
+            this.label10.Size = new System.Drawing.Size(48, 20);
             this.label10.TabIndex = 20;
             this.label10.Text = "Poid :";
             // 
@@ -366,7 +367,7 @@ namespace pesage
             this.conteneurId.Location = new System.Drawing.Point(722, 228);
             this.conteneurId.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.conteneurId.Name = "conteneurId";
-            this.conteneurId.Size = new System.Drawing.Size(264, 27);
+            this.conteneurId.Size = new System.Drawing.Size(264, 28);
             this.conteneurId.TabIndex = 13;
             this.conteneurId.ValueMember = "id";
             this.conteneurId.SelectedIndexChanged += new System.EventHandler(this.conteneurLib_SelectedIndexChanged);
@@ -385,7 +386,7 @@ namespace pesage
             this.residuId.Location = new System.Drawing.Point(722, 180);
             this.residuId.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.residuId.Name = "residuId";
-            this.residuId.Size = new System.Drawing.Size(264, 27);
+            this.residuId.Size = new System.Drawing.Size(264, 28);
             this.residuId.TabIndex = 14;
             this.residuId.ValueMember = "id";
             this.residuId.SelectedIndexChanged += new System.EventHandler(this.residuLib_SelectedIndexChanged);
@@ -404,7 +405,7 @@ namespace pesage
             this.serviceId.Location = new System.Drawing.Point(722, 132);
             this.serviceId.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.serviceId.Name = "serviceId";
-            this.serviceId.Size = new System.Drawing.Size(264, 27);
+            this.serviceId.Size = new System.Drawing.Size(264, 28);
             this.serviceId.TabIndex = 15;
             this.serviceId.ValueMember = "id";
             this.serviceId.SelectedIndexChanged += new System.EventHandler(this.serviceLib_SelectedIndexChanged);
@@ -428,7 +429,7 @@ namespace pesage
             this.clientId.Location = new System.Drawing.Point(722, 83);
             this.clientId.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.clientId.Name = "clientId";
-            this.clientId.Size = new System.Drawing.Size(264, 27);
+            this.clientId.Size = new System.Drawing.Size(264, 28);
             this.clientId.TabIndex = 16;
             this.clientId.ValueMember = "id";
             this.clientId.SelectedIndexChanged += new System.EventHandler(this.clientLib_SelectedIndexChanged);
@@ -447,7 +448,7 @@ namespace pesage
             this.conteneurLib.Location = new System.Drawing.Point(215, 228);
             this.conteneurLib.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.conteneurLib.Name = "conteneurLib";
-            this.conteneurLib.Size = new System.Drawing.Size(484, 27);
+            this.conteneurLib.Size = new System.Drawing.Size(484, 28);
             this.conteneurLib.TabIndex = 9;
             this.conteneurLib.ValueMember = "id";
             this.conteneurLib.SelectedIndexChanged += new System.EventHandler(this.conteneurLib_SelectedIndexChanged);
@@ -461,7 +462,7 @@ namespace pesage
             this.residuLib.Location = new System.Drawing.Point(215, 180);
             this.residuLib.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.residuLib.Name = "residuLib";
-            this.residuLib.Size = new System.Drawing.Size(484, 27);
+            this.residuLib.Size = new System.Drawing.Size(484, 28);
             this.residuLib.TabIndex = 10;
             this.residuLib.ValueMember = "id";
             this.residuLib.SelectedIndexChanged += new System.EventHandler(this.residuLib_SelectedIndexChanged);
@@ -475,7 +476,7 @@ namespace pesage
             this.serviceLib.Location = new System.Drawing.Point(215, 132);
             this.serviceLib.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.serviceLib.Name = "serviceLib";
-            this.serviceLib.Size = new System.Drawing.Size(484, 27);
+            this.serviceLib.Size = new System.Drawing.Size(484, 28);
             this.serviceLib.TabIndex = 11;
             this.serviceLib.ValueMember = "id";
             this.serviceLib.SelectedIndexChanged += new System.EventHandler(this.serviceLib_SelectedIndexChanged);
@@ -489,7 +490,7 @@ namespace pesage
             this.clientLib.Location = new System.Drawing.Point(215, 83);
             this.clientLib.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.clientLib.Name = "clientLib";
-            this.clientLib.Size = new System.Drawing.Size(484, 27);
+            this.clientLib.Size = new System.Drawing.Size(484, 28);
             this.clientLib.TabIndex = 12;
             this.clientLib.ValueMember = "id";
             this.clientLib.SelectedIndexChanged += new System.EventHandler(this.clientLib_SelectedIndexChanged);
@@ -500,7 +501,7 @@ namespace pesage
             this.label5.Location = new System.Drawing.Point(90, 235);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 19);
+            this.label5.Size = new System.Drawing.Size(92, 20);
             this.label5.TabIndex = 5;
             this.label5.Text = "Conteneur :";
             // 
@@ -510,7 +511,7 @@ namespace pesage
             this.label4.Location = new System.Drawing.Point(90, 187);
             this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 19);
+            this.label4.Size = new System.Drawing.Size(67, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Résidu :";
             // 
@@ -520,7 +521,7 @@ namespace pesage
             this.label3.Location = new System.Drawing.Point(90, 139);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 19);
+            this.label3.Size = new System.Drawing.Size(69, 20);
             this.label3.TabIndex = 7;
             this.label3.Text = "Service :";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -531,7 +532,7 @@ namespace pesage
             this.label2.Location = new System.Drawing.Point(90, 91);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 19);
+            this.label2.Size = new System.Drawing.Size(57, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "Client :";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -542,7 +543,7 @@ namespace pesage
             this.label1.Location = new System.Drawing.Point(15, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(195, 19);
+            this.label1.Size = new System.Drawing.Size(182, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Impression d\'étiquettes :";
             // 
@@ -649,10 +650,10 @@ namespace pesage
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(5, 25);
+            this.dataGridView2.Location = new System.Drawing.Point(5, 24);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dataGridView2.Size = new System.Drawing.Size(535, 470);
+            this.dataGridView2.Size = new System.Drawing.Size(535, 471);
             this.dataGridView2.TabIndex = 0;
             // 
             // saveData
@@ -723,7 +724,7 @@ namespace pesage
             this.label9.Location = new System.Drawing.Point(43, 291);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 21);
+            this.label9.Size = new System.Drawing.Size(66, 22);
             this.label9.TabIndex = 4;
             this.label9.Text = "Résidu";
             // 
@@ -733,7 +734,7 @@ namespace pesage
             this.label8.Location = new System.Drawing.Point(43, 229);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 21);
+            this.label8.Size = new System.Drawing.Size(94, 22);
             this.label8.TabIndex = 3;
             this.label8.Text = "Conteneur";
             // 
@@ -743,7 +744,7 @@ namespace pesage
             this.label7.Location = new System.Drawing.Point(43, 161);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 21);
+            this.label7.Size = new System.Drawing.Size(70, 22);
             this.label7.TabIndex = 2;
             this.label7.Text = "Service";
             // 
@@ -763,11 +764,11 @@ namespace pesage
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Inter", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(43, 101);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 19);
+            this.label6.Size = new System.Drawing.Size(49, 20);
             this.label6.TabIndex = 0;
             this.label6.Text = "Client";
             // 
@@ -811,7 +812,7 @@ namespace pesage
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1056, 613);
+            this.dataGridView1.Size = new System.Drawing.Size(1056, 614);
             this.dataGridView1.TabIndex = 2;
             // 
             // codeBarreDataGridViewTextBoxColumn
@@ -887,11 +888,11 @@ namespace pesage
             this.groupBox3.Controls.Add(this.dateFin);
             this.groupBox3.Controls.Add(this.dateDebut);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox3.Location = new System.Drawing.Point(7, 619);
+            this.groupBox3.Location = new System.Drawing.Point(7, 620);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.groupBox3.Size = new System.Drawing.Size(1056, 165);
+            this.groupBox3.Size = new System.Drawing.Size(1056, 164);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
@@ -899,7 +900,7 @@ namespace pesage
             // 
             this.codeBarre.Location = new System.Drawing.Point(660, 35);
             this.codeBarre.Name = "codeBarre";
-            this.codeBarre.Size = new System.Drawing.Size(316, 28);
+            this.codeBarre.Size = new System.Drawing.Size(316, 27);
             this.codeBarre.TabIndex = 7;
             this.codeBarre.Click += new System.EventHandler(this.codeBarre_Click);
             this.codeBarre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.codeBarre_KeyPress);
@@ -909,7 +910,7 @@ namespace pesage
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(549, 42);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 21);
+            this.label12.Size = new System.Drawing.Size(100, 22);
             this.label12.TabIndex = 6;
             this.label12.Text = "Code barre";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -931,7 +932,7 @@ namespace pesage
             this.label14.Location = new System.Drawing.Point(36, 72);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(77, 21);
+            this.label14.Size = new System.Drawing.Size(72, 22);
             this.label14.TabIndex = 4;
             this.label14.Text = "Date fin";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -941,7 +942,7 @@ namespace pesage
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(9, 35);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(104, 21);
+            this.label13.Size = new System.Drawing.Size(98, 22);
             this.label13.TabIndex = 3;
             this.label13.Text = "Date debut";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -962,7 +963,7 @@ namespace pesage
             this.dateFin.Location = new System.Drawing.Point(121, 66);
             this.dateFin.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dateFin.Name = "dateFin";
-            this.dateFin.Size = new System.Drawing.Size(303, 28);
+            this.dateFin.Size = new System.Drawing.Size(303, 27);
             this.dateFin.TabIndex = 1;
             // 
             // dateDebut
@@ -971,7 +972,7 @@ namespace pesage
             this.dateDebut.Location = new System.Drawing.Point(121, 30);
             this.dateDebut.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dateDebut.Name = "dateDebut";
-            this.dateDebut.Size = new System.Drawing.Size(303, 28);
+            this.dateDebut.Size = new System.Drawing.Size(303, 27);
             this.dateDebut.TabIndex = 0;
             // 
             // tabPage4
@@ -1025,7 +1026,7 @@ namespace pesage
             // 
             this.yOffsetNumeric.Location = new System.Drawing.Point(175, 106);
             this.yOffsetNumeric.Name = "yOffsetNumeric";
-            this.yOffsetNumeric.Size = new System.Drawing.Size(120, 28);
+            this.yOffsetNumeric.Size = new System.Drawing.Size(120, 27);
             this.yOffsetNumeric.TabIndex = 20;
             // 
             // label19
@@ -1033,7 +1034,7 @@ namespace pesage
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(62, 113);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(91, 21);
+            this.label19.Size = new System.Drawing.Size(85, 22);
             this.label19.TabIndex = 19;
             this.label19.Text = "Y Offset :";
             // 
@@ -1041,7 +1042,7 @@ namespace pesage
             // 
             this.xOffsetNumeric.Location = new System.Drawing.Point(175, 69);
             this.xOffsetNumeric.Name = "xOffsetNumeric";
-            this.xOffsetNumeric.Size = new System.Drawing.Size(120, 28);
+            this.xOffsetNumeric.Size = new System.Drawing.Size(120, 27);
             this.xOffsetNumeric.TabIndex = 18;
             // 
             // label16
@@ -1049,7 +1050,7 @@ namespace pesage
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(62, 76);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(91, 21);
+            this.label16.Size = new System.Drawing.Size(85, 22);
             this.label16.TabIndex = 16;
             this.label16.Text = "X Offset :";
             // 
@@ -1058,7 +1059,7 @@ namespace pesage
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(62, 37);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(105, 21);
+            this.label11.Size = new System.Drawing.Size(97, 22);
             this.label11.TabIndex = 14;
             this.label11.Text = "COM port :";
             // 
@@ -1181,12 +1182,12 @@ namespace pesage
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1078, 837);
             this.Controls.Add(this.tabControl1);
-            this.Font = new System.Drawing.Font("Inter", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "MainWindow";
