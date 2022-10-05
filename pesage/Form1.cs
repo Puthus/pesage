@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Drawing.Text;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -27,8 +28,9 @@ namespace pesage
         private bool _isInserting;
         private bool _isCanceled;
         private readonly List<KeyValuePair<string, dynamic>> _pessageAdapters = new List<KeyValuePair<string, dynamic>>();
-
-
+#if DEBUG
+        private TextBox debugBox;
+#endif
         private Thread _readThread;
         private SerialPort _serialPort1;
         private string _table;
@@ -69,15 +71,24 @@ namespace pesage
             _pessageAdapters.Add(new KeyValuePair<string, dynamic>("client_service", client_serviceTableAdapter));
             xOffsetNumeric.Value = Settings.Default.xOffsetPrint;
             yOffsetNumeric.Value = Settings.Default.yOffsetPrint;
-            regexTxt.Text = Settings.Default.regex;
-
+            regexTxt.Text = Settings.Default.regex == "" ? "(\\w*)?,?(\\w*)?,?([+-]?([0-9]*[.|,])?[0-9]+)(\\w*)" : Settings.Default.regex;
+#if DEBUG
+            regexTxt.ReadOnly = false;
+            debugBox = new TextBox();
+            tabPage4.Controls.Add(debugBox);
+            debugBox.Location = new Point(175, 174);
+            debugBox.Multiline = true;
+            debugBox.Name = "debugBox";
+            debugBox.Size = new Size(392, 284);
+            debugBox.TabIndex = 24;
+#endif
             try
             {
                 _conn.Open();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(@"Connection to database failed! Line 75"+'\n'+ex.Message);
+                MessageBox.Show(@"Connection to database failed! Line 75" + '\n' + ex.Message);
             }
             if (clientLib.SelectedValue != null)
                 try
@@ -86,17 +97,20 @@ namespace pesage
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(@"Error Filling Client services Line 84"+'\n'+ ex.Message);
+                    MessageBox.Show(@"Error Filling Client services Line 84" + '\n' + ex.Message);
                 }
 
-            foreach (var portName in SerialPort.GetPortNames()) 
+            foreach (string portName in SerialPort.GetPortNames())
+            {
                 comPortBox.Items.Add(portName);
+                //MessageBox.Show("Adding Port " + portName);
+            }
 
             if (comPortBox.Items.Count <= 0) return;
-            
+
             comPortBox.SelectedIndex = 0;
             _readThread = new Thread(Read);
-            _serialPort1 = new SerialPort(comPortBox.Text);
+            _serialPort1 = new SerialPort(comPortBox.SelectedItem.ToString(), 9600, Parity.None, 8, StopBits.One);
             _serialPort1.ReadTimeout = 500;
             _serialPort1.WriteTimeout = 500;
 
@@ -113,37 +127,79 @@ namespace pesage
             {
                 MessageBox.Show($@"Error Opening Thread, you are out of memory" + '\n' + ex.Message);
             }
+            GenerateCodeBarre();
         }
-
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             Settings.Default.xOffsetPrint = (int)xOffsetNumeric.Value;
             Settings.Default.yOffsetPrint = (int)yOffsetNumeric.Value;
             Settings.Default.comPort = comPortBox.Text;
+            Settings.Default.regex = regexTxt.Text;
             Settings.Default.Save();
         }
 
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Settings.Default.xOffsetPrint = (int)xOffsetNumeric.Value;
+            Settings.Default.yOffsetPrint = (int)yOffsetNumeric.Value;
+            Settings.Default.comPort = comPortBox.Text;
+            Settings.Default.regex = regexTxt.Text;
+            Settings.Default.Save();
+            if (_conn != null && _conn.State == ConnectionState.Open)
+                _conn.Close();
+            if (_serialPort1 != null && _serialPort1.IsOpen)
+                _serialPort1.Close();
+            _isRunning = false;
+            if (_readThread != null)
+                _readThread.Abort();
+        }
+
+        #region read com port
+
         public void Read()
         {
-            var pattern = @"(\w*)?,?(\w*)?,?([+-]?([0-9]*[.])?[0-9]+)(\w*)";
             while (_isRunning)
-                try
+                if (_serialPort1.IsOpen)
                 {
-                    var input = _serialPort1.ReadLine();
-                    var x = Regex.Match(input, pattern);
-                    SetText(weightLib, x);
-                }
-                catch (TimeoutException exception)
-                {
-                    Console.WriteLine(exception.Message);
+                    try
+                    {
+                        var pattern = Settings.Default.regex == "" ? "(\\w*)?,?(\\w*)?,?([+-]?([0-9]*[.|,])?[0-9]+)(\\w*)" : Settings.Default.regex;
+                        var input = _serialPort1.ReadLine();
+                        var x = Regex.Match(input, pattern);
+                        if (x.Success)
+                        {
+                            SetText(weightLib, x);
+#if DEBUG
+                            SetText(debugBox, x);
+#endif
+                        }
+                    }
+                    catch (TimeoutException exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                    }
+                    catch (IOException ex)
+                    {
+                        //Console.WriteLine(ex.Message);
+                    }
+
                 }
         }
 
         private void SetText(Control txtBox, Match m)
         {
-            _weight.IsStable = m.Groups[1].Value == "ST";
-            _weight.IsNet = m.Groups[2].Value == "NT";
-            _weight.Weight = float.Parse(m.Groups[3].Value);
+            try
+            {
+                _weight.IsStable = m.Groups[1].Value == "ST";
+                _weight.IsNet = m.Groups[2].Value == "NT";
+                _weight.Weight = float.Parse(m.Groups[3].Value);
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                MessageBox.Show(ex.Message);
+#endif
+            }
             if (weightLib.InvokeRequired)
             {
                 SetTextCallback d = SetText;
@@ -164,6 +220,29 @@ namespace pesage
                 txtBox.Text = $@"{_weight.Weight:F2} {unit}";
             }
         }
+#if DEBUG
+        private void SetText(TextBox txtBox, Match m)
+        {
+            if (weightLib.InvokeRequired)
+            {
+                SetTextCallback d = SetText;
+                try
+                {
+                    Invoke(d, txtBox, m);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else
+            {
+                txtBox.AppendText(m.Groups[0].Value);
+            }
+        }
+#endif
+
+        #endregion
 
         private void clientLib_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -172,41 +251,36 @@ namespace pesage
                 if (clientLib.Items.Count > 0 && clientLib.SelectedValue != null)
                     try
                     {
-                        c_ServiceTableAdapter.FillBy(pesageDataSet.C_Service,
-                            (int)Convert.ChangeType(clientLib.SelectedValue, typeof(int)));
-                        serviceLib.SelectedIndex = -1;
-                        if (pesageDataSet.C_Service.Count > 0)
-                            serviceLib.SelectedIndex = 0;
-                        //GenerateCodeBarre();
+                        if(c_ServiceTableAdapter.FillBy(pesageDataSet.C_Service, Convert.ToInt32(clientId.SelectedValue)) > 0)
+                            GenerateCodeBarre();
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
-                        // Log.Error("Something wrong happened in clientLib_SelectedIndexChanged", ex);    
+                        Console.WriteLine(@"Something wrong happened in clientLib_SelectedIndexChanged inner try"+ex.Message);
                     }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                // Log.Error("Something wrong happened in clientLib_SelectedIndexChanged", ex);
+                Console.WriteLine(@"Something wrong happened in clientLib_SelectedIndexChanged outer try " + ex.Message);
             }
         }
 
         private void print_Click(object sender, EventArgs e)
         {
+            if(!IsValidTicket())return;
             var font = new ZplFont();
             var elements = new List<ZplElementBase>();
             int xoffset = Settings.Default.xOffsetPrint;
             int yoffset = Settings.Default.yOffsetPrint;
             var x = 110 + xoffset;
             var y = 30 + yoffset;
-            elements.Add(new ZplTextField($@"Client : {clientLib.Text}"      , x , y * 1 + yoffset, font));
-            elements.Add(new ZplTextField($@"Service : {serviceLib.Text}"    , x , y * 2 + yoffset, font));
-            elements.Add(new ZplTextField($@"Residu : {residuLib.Text}"      , x , y * 3 + yoffset, font));
-            elements.Add(new ZplTextField($@"Conteneur : {conteneurLib.Text}", x , y * 4 + yoffset, font));
-            elements.Add(new ZplTextField($@"Poids : {weightLib.Text}"       , x , y * 5 + yoffset, font));
-            elements.Add(new ZplTextField($@"Date : {DateTime.Now}"          , x , y * 6 + yoffset, font));
-            elements.Add(new ZplBarcode128(codeBarreLib.Text                 , x + 48 , y * 8 + yoffset));
+            elements.Add(new ZplTextField($@"Client : {clientLib.Text}", x, y * 1 + yoffset, font));
+            elements.Add(new ZplTextField($@"Service : {serviceLib.Text}", x, y * 2 + yoffset, font));
+            elements.Add(new ZplTextField($@"Residu : {residuLib.Text}", x, y * 3 + yoffset, font));
+            elements.Add(new ZplTextField($@"Conteneur : {conteneurLib.Text}", x, y * 4 + yoffset, font));
+            elements.Add(new ZplTextField($@"Poids : {weightLib.Text}", x, y * 5 + yoffset, font));
+            elements.Add(new ZplTextField($@"Date : {DateTime.Now}", x, y * 6 + yoffset, font));
+            elements.Add(new ZplBarcode128(codeBarreLib.Text, x + 48, y * 8 + yoffset));
             var renderEngine = new ZplEngine(elements);
             var output = renderEngine.ToZplString(new ZplRenderOptions { AddEmptyLineBeforeElementStart = true });
             foreach (string printer in PrinterSettings.InstalledPrinters)
@@ -214,7 +288,18 @@ namespace pesage
                     RawPrinterHelper.SendStringToPrinter(printer, output);
             saveTicket_Click(sender, e);
         }
-
+        public bool IsValidTicket(bool mboxs = true){
+                if (mboxs && clientId.SelectedIndex == -1) MessageBox.Show("Impossible de Valider étiquettes : veulliez choisire un Client");
+                if (mboxs && serviceId.SelectedIndex == -1) MessageBox.Show("Impossible de Valider étiquettes : veulliez choisire un Service");
+                if (mboxs && residuId.SelectedIndex == -1) MessageBox.Show("Impossible de Valider étiquettes : veulliez choisire un Residu");
+                if (mboxs && conteneurId.SelectedIndex == -1) MessageBox.Show("Impossible de Valider étiquettes : veulliez choisire un Conteneur");
+                if (mboxs && operateurId.SelectedIndex == -1)  MessageBox.Show("Impossible de Valider étiquettes : veulliez choisire un Operateur");
+            return (clientId.SelectedIndex != -1
+                && serviceId.SelectedIndex != -1
+                && residuId.SelectedIndex != -1
+                && conteneurId.SelectedIndex != -1
+                && operateurId.SelectedIndex != -1);
+        }
         private void serviceEdit_Click(object sender, EventArgs e)
         {
             _isCanceled = false;
@@ -223,6 +308,7 @@ namespace pesage
             groupBox1.Text = @"Modifier Services";
             c_ServiceTableAdapter.FillBy(pesageDataSet.C_Service, Convert.ToInt32(clientId.SelectedValue));
             dataGridView2.DataSource = pesageDataSet.C_Service;
+            //GenerateCodeBarre();
         }
 
         private void conteneurEdit_Click(object sender, EventArgs e)
@@ -233,6 +319,7 @@ namespace pesage
             _isInserting = false;
             conteneurTableAdapter.Fill(pesageDataSet.Conteneur);
             dataGridView2.DataSource = pesageDataSet.Conteneur;
+            //GenerateCodeBarre();
         }
 
         private void residuEdit_Click(object sender, EventArgs e)
@@ -243,6 +330,7 @@ namespace pesage
             _isInserting = false;
             residuTableAdapter.Fill(pesageDataSet.Residu);
             dataGridView2.DataSource = pesageDataSet.Residu;
+            //GenerateCodeBarre();
         }
 
         private void serviceAdd_Click(object sender, EventArgs e)
@@ -277,6 +365,10 @@ namespace pesage
 
         private void addRow_Click(object sender, EventArgs e)
         {
+            if(!_isInserting){
+                MessageBox.Show(@"Impossible d'ajouter une ligne dans ce mode");
+                return;
+            }
             int last;
             if (_ds.Tables[_table].Rows.Count == 0)
                 try
@@ -286,7 +378,7 @@ namespace pesage
                 }
                 catch
                 {
-                    last = 1; 
+                    last = 1;
                 }
             else
                 last = Convert.ToInt32(_ds.Tables[_table].Rows[_ds.Tables[_table].Rows.Count - 1][0]) + 1;
@@ -303,7 +395,7 @@ namespace pesage
                 if (_isInserting)
                 {
                     foreach (DataRow row in _ds.Tables[_table].Rows)
-                    { 
+                    {
                         adapter.Insert(row["libelle"].ToString());
                         if (_table != "C_Service") continue;
                         var max = c_ServiceTableAdapter.GetData().AsEnumerable().Select(al => al.Field<int>("id"))
@@ -323,7 +415,7 @@ namespace pesage
                                     adapter.Update(row);
                                     break;
                                 case DataRowState.Deleted:
-                                    adapter.Delete(row["id", DataRowVersion.Original], row["libelle", DataRowVersion.Original]);
+                                    adapter.Delete((int)row["id", DataRowVersion.Original], (string)row["libelle", DataRowVersion.Original]);
                                     break;
                             }
                         }
@@ -368,6 +460,7 @@ namespace pesage
 
         private void saveTicket_Click(object sender, EventArgs e)
         {
+            if(!IsValidTicket())return;
             try
             {
                 etiquetteTableAdapter.Insert(
@@ -380,14 +473,14 @@ namespace pesage
                     Convert.ToInt32(residuId.SelectedValue),
                     Convert.ToInt32(operateurId.SelectedValue)
                 );
+                MessageBox.Show(@"Ettiquette enregistrer", @"Succès", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                GenerateCodeBarre();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            MessageBox.Show(@"Ettiquette enregistrer", @"Succès", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-            GenerateCodeBarre();
         }
 
         private void serviceLib_SelectedIndexChanged(object sender, EventArgs e)
@@ -401,33 +494,29 @@ namespace pesage
         private void conteneurLib_SelectedIndexChanged(object sender, EventArgs e)
         {
             GenerateCodeBarre();
-        }        
+        }
         private void operatorLib_SelectedIndexChanged(object sender, EventArgs e)
         {
             GenerateCodeBarre();
         }
+
         private void GenerateCodeBarre()
         {
-            int cl = Convert.ToInt32(clientId.SelectedValue);
-            int se = Convert.ToInt32(serviceId.SelectedValue) == 0 ? 1 : Convert.ToInt32(serviceId.SelectedValue);
-            int co = Convert.ToInt32(conteneurId.SelectedValue);
-            int re = Convert.ToInt32(residuId.SelectedValue);
-            int op = Convert.ToInt32(operateurId.SelectedValue);
-            string text= $@"{cl:0}{se:00}{co:00}{re:00}{op:00}";
-            etiquetteTableAdapter.likeCodeBarre($"%{text}%");
-            SqlCommand cmd = new SqlCommand("select count(*) from etiquette where num_serie like @codeBarre", _conn);
-            cmd.Parameters.Add("@codeBarre", SqlDbType.VarChar).Value = $"%{text}%";
-            int count = 0;
-            if (_conn.State == ConnectionState.Open)
-                count = (Int32)cmd.ExecuteScalar();
+            if (!IsValidTicket(false))
+            {
+                codeBarreLib.Text = "###################";
+                return;
+            }
 
-            text = $@"{text}{count:00000}";
+            var cl = Convert.ToInt32(clientId.SelectedValue);
+            var se = Convert.ToInt32(serviceId.SelectedValue);
+            var co = Convert.ToInt32(conteneurId.SelectedValue);
+            var re = Convert.ToInt32(residuId.SelectedValue);
+            var op = Convert.ToInt32(operateurId.SelectedValue);
+            var text = $@"{cl:00}{se:00}{co:00}{re:00}{op:00}";
+            var count = etiquetteTableAdapter.ticketNumber($"%{text}%");
+            text = $@"{text}{count:000000}";
             codeBarreLib.Text = text;
-        }
-
-        private void codeBarre_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void codeBarre_Click(object sender, EventArgs e)
@@ -445,26 +534,42 @@ namespace pesage
             }
         }
 
-        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Settings.Default.xOffsetPrint = (int)xOffsetNumeric.Value;
-            Settings.Default.yOffsetPrint = (int)yOffsetNumeric.Value;
-            Settings.Default.Save();
-            if (_conn != null &&_conn.State == ConnectionState.Open)
-                _conn.Close();
-            if (_serialPort1 != null && _serialPort1.IsOpen)
-                _serialPort1.Close();
-            _isRunning = false;
-            if(_readThread != null)
-                _readThread.Abort();
-        }
-
         private void cancel_Click(object sender, EventArgs e)
         {
             groupBox1.Text = "";
             dataGridView2.DataSource = new DataSet();
             dataGridView2.Refresh();
             _isCanceled = true;
+        }
+
+        private void comPortBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_serialPort1 == null) return;
+                if (_serialPort1.IsOpen)
+                    _serialPort1.Close();
+                _serialPort1.PortName = comPortBox.SelectedItem.ToString();
+                _serialPort1.Open();
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(@"Error closing Com port " + '\n' + ex.Message);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show($@"Error Opening COM Port {_serialPort1.PortName}" + '\n' + ex.Message);
+            }
+        }
+
+        private void saveConf_Click(object sender, EventArgs e)
+        {
+            Settings.Default.Save();
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GenerateCodeBarre();
         }
     }
 }

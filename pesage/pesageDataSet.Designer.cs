@@ -3203,7 +3203,7 @@ namespace pesage {
                 this.columnConteneur.MaxLength = 50;
                 this.columnResidu.MaxLength = 50;
                 this.columnOperateur.MaxLength = 50;
-                this.columnCode_barre.MaxLength = 14;
+                this.columnCode_barre.MaxLength = 20;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4913,9 +4913,9 @@ namespace pesage.pesageDataSetTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT C_Service.id, C_Service.libelle FROM C_Service INNER JOIN client_service O" +
-                "N C_Service.id = client_service.service_id WHERE (client_service.client_id = @cl" +
-                "ientid)";
+            this._commandCollection[1].CommandText = "SELECT        C_Service.id, C_Service.libelle\r\nFROM            C_Service INNER JO" +
+                "IN\r\n                         client_service ON C_Service.id = client_service.ser" +
+                "vice_id\r\nWHERE        (client_service.client_id = @clientid)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clientid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "client_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -6312,7 +6312,7 @@ SELECT id, num_serie, e_date, poid, client_id, service_id, conteneur_id, residu_
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        id, num_serie, e_date, poid, client_id, service_id, conteneur_id, r" +
@@ -6324,6 +6324,11 @@ SELECT id, num_serie, e_date, poid, client_id, service_id, conteneur_id, residu_
                 "_id, service_id FROM Etiquette AS e WHERE (num_serie LIKE @codebarre)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codebarre", global::System.Data.SqlDbType.VarChar, 14, global::System.Data.ParameterDirection.Input, 0, 0, "num_serie", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT COUNT(*) FROM Etiquette where num_serie like @code";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@code", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "num_serie", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6727,6 +6732,40 @@ SELECT id, num_serie, e_date, poid, client_id, service_id, conteneur_id, residu_
                     global::System.Nullable<int> Original_residu_id, 
                     global::System.Nullable<int> Original_operateur_id) {
             return this.Update(num_serie, e_date, poid, client_id, service_id, conteneur_id, residu_id, operateur_id, Original_id, Original_num_serie, Original_e_date, Original_poid, Original_client_id, Original_service_id, Original_conteneur_id, Original_residu_id, Original_operateur_id, Original_id);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<int> ticketNumber(string code) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            if ((code == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(code));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<int>();
+            }
+            else {
+                return new global::System.Nullable<int>(((int)(returnValue)));
+            }
         }
     }
     
@@ -7904,7 +7943,7 @@ FROM            Etiquette AS e INNER JOIN
                          Operateur AS o ON e.operateur_id = o.id
 WHERE        (e.num_serie = @codebarre)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codebarre", global::System.Data.SqlDbType.VarChar, 14, global::System.Data.ParameterDirection.Input, 0, 0, "Code barre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codebarre", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "Code barre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7935,29 +7974,6 @@ WHERE        (e.num_serie = @codebarre)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual pesageDataSet.ticketsDataTable GetDataByDate(global::System.Nullable<global::System.DateTime> datedebut, global::System.Nullable<global::System.DateTime> datefin) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((datedebut.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(datedebut.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((datefin.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(datefin.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            pesageDataSet.ticketsDataTable dataTable = new pesageDataSet.ticketsDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByCode(pesageDataSet.ticketsDataTable dataTable, string codebarre) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
@@ -7972,23 +7988,6 @@ WHERE        (e.num_serie = @codebarre)";
             }
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual pesageDataSet.ticketsDataTable GetDataByCode(string codebarre) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((codebarre == null)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(codebarre));
-            }
-            pesageDataSet.ticketsDataTable dataTable = new pesageDataSet.ticketsDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
         }
     }
     
