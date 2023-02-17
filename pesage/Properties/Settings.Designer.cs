@@ -23,13 +23,62 @@ namespace pesage.Properties {
             }
         }
         
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int xOffsetPrint {
+            get {
+                return ((int)(this["xOffsetPrint"]));
+            }
+            set {
+                this["xOffsetPrint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int yOffsetPrint {
+            get {
+                return ((int)(this["yOffsetPrint"]));
+            }
+            set {
+                this["yOffsetPrint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM1")]
+        public string comPort {
+            get {
+                return ((string)(this["comPort"]));
+            }
+            set {
+                this["comPort"] = value;
+            }
+        }
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TITAN-LEGION;Initial Catalog=pesage;Integrated Security=True")]
-        public string pesageConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TITAN-LEGION\\SQLEXPRESS;Initial Catalog=pesage;Persist Security Info=" +
+            "True;User ID=sa;Password=Eysi4Team")]
+        public string pesageConn {
             get {
-                return ((string)(this["pesageConnectionString"]));
+                return ((string)(this["pesageConn"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("(\\w*)?,?(\\w*)?,?([+-]?([0-9]*[.|,])?[0-9]+)(\\w*)")]
+        public string regex {
+            get {
+                return ((string)(this["regex"]));
+            }
+            set {
+                this["regex"] = value;
             }
         }
     }
