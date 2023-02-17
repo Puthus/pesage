@@ -1462,6 +1462,8 @@ namespace pesage {
             
             private global::System.Data.DataColumn columnlibelle;
             
+            private global::System.Data.DataColumn columntare;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ConteneurDataTable() {
@@ -1513,6 +1515,14 @@ namespace pesage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn tareColumn {
+                get {
+                    return this.columntare;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1548,11 +1558,12 @@ namespace pesage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ConteneurRow AddConteneurRow(string libelle) {
+            public ConteneurRow AddConteneurRow(string libelle, double tare) {
                 ConteneurRow rowConteneurRow = ((ConteneurRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        libelle};
+                        libelle,
+                        tare};
                 rowConteneurRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowConteneurRow);
                 return rowConteneurRow;
@@ -1584,6 +1595,7 @@ namespace pesage {
             internal void InitVars() {
                 this.columnid = base.Columns["id"];
                 this.columnlibelle = base.Columns["libelle"];
+                this.columntare = base.Columns["tare"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1593,6 +1605,8 @@ namespace pesage {
                 base.Columns.Add(this.columnid);
                 this.columnlibelle = new global::System.Data.DataColumn("libelle", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlibelle);
+                this.columntare = new global::System.Data.DataColumn("tare", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntare);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -2990,8 +3004,6 @@ namespace pesage {
             
             private global::System.Data.DataColumn columnPoid;
             
-            private global::System.Data.DataColumn columnClient;
-            
             private global::System.Data.DataColumn columnService;
             
             private global::System.Data.DataColumn columnConteneur;
@@ -3048,14 +3060,6 @@ namespace pesage {
             public global::System.Data.DataColumn PoidColumn {
                 get {
                     return this.columnPoid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ClientColumn {
-                get {
-                    return this.columnClient;
                 }
             }
             
@@ -3136,12 +3140,11 @@ namespace pesage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ticketsRow AddticketsRow(System.DateTime Date, float Poid, string Client, string Service, string Conteneur, string Residu, string Operateur, string Code_barre) {
+            public ticketsRow AddticketsRow(System.DateTime Date, float Poid, string Service, string Conteneur, string Residu, string Operateur, string Code_barre) {
                 ticketsRow rowticketsRow = ((ticketsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Date,
                         Poid,
-                        Client,
                         Service,
                         Conteneur,
                         Residu,
@@ -3171,7 +3174,6 @@ namespace pesage {
             internal void InitVars() {
                 this.columnDate = base.Columns["Date"];
                 this.columnPoid = base.Columns["Poid"];
-                this.columnClient = base.Columns["Client"];
                 this.columnService = base.Columns["Service"];
                 this.columnConteneur = base.Columns["Conteneur"];
                 this.columnResidu = base.Columns["Residu"];
@@ -3186,8 +3188,6 @@ namespace pesage {
                 base.Columns.Add(this.columnDate);
                 this.columnPoid = new global::System.Data.DataColumn("Poid", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPoid);
-                this.columnClient = new global::System.Data.DataColumn("Client", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnClient);
                 this.columnService = new global::System.Data.DataColumn("Service", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnService);
                 this.columnConteneur = new global::System.Data.DataColumn("Conteneur", typeof(string), null, global::System.Data.MappingType.Element);
@@ -3198,7 +3198,6 @@ namespace pesage {
                 base.Columns.Add(this.columnOperateur);
                 this.columnCode_barre = new global::System.Data.DataColumn("Code barre", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCode_barre);
-                this.columnClient.MaxLength = 50;
                 this.columnService.MaxLength = 50;
                 this.columnConteneur.MaxLength = 50;
                 this.columnResidu.MaxLength = 50;
@@ -3629,6 +3628,22 @@ namespace pesage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public double tare {
+                get {
+                    try {
+                        return ((double)(this[this.tableConteneur.tareColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tare\' in table \'Conteneur\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConteneur.tareColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IslibelleNull() {
                 return this.IsNull(this.tableConteneur.libelleColumn);
             }
@@ -3637,6 +3652,18 @@ namespace pesage {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetlibelleNull() {
                 this[this.tableConteneur.libelleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IstareNull() {
+                return this.IsNull(this.tableConteneur.tareColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SettareNull() {
+                this[this.tableConteneur.tareColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4244,22 +4271,6 @@ namespace pesage {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Client {
-                get {
-                    try {
-                        return ((string)(this[this.tabletickets.ClientColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Client\' in table \'tickets\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletickets.ClientColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Service {
                 get {
                     try {
@@ -4360,18 +4371,6 @@ namespace pesage {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPoidNull() {
                 this[this.tabletickets.PoidColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsClientNull() {
-                return this.IsNull(this.tabletickets.ClientColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetClientNull() {
-                this[this.tabletickets.ClientColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5903,31 +5902,38 @@ SELECT id, client_id, service_id FROM client_service WHERE (id = @id)";
             tableMapping.DataSetTable = "Conteneur";
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("libelle", "libelle");
+            tableMapping.ColumnMappings.Add("tare", "tare");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Conteneur] WHERE (([id] = @Original_id) AND ((@IsNull_libelle " +
-                "= 1 AND [libelle] IS NULL) OR ([libelle] = @Original_libelle)))";
+                "= 1 AND [libelle] IS NULL) OR ([libelle] = @Original_libelle)) AND ((@IsNull_tar" +
+                "e = 1 AND [tare] IS NULL) OR ([tare] = @Original_tare)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_libelle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "libelle", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_libelle", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "libelle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_tare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tare", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tare", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tare", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Conteneur] ([libelle]) VALUES (@libelle);\r\nSELECT id, libelle " +
-                "FROM Conteneur WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Conteneur] ([libelle], [tare]) VALUES (@libelle, @tare);\r\nSELE" +
+                "CT id, libelle, tare FROM Conteneur WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@libelle", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "libelle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tare", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tare", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Conteneur] SET [libelle] = @libelle WHERE (([id] = @Original_id) AN" +
-                "D ((@IsNull_libelle = 1 AND [libelle] IS NULL) OR ([libelle] = @Original_libelle" +
-                ")));\r\nSELECT id, libelle FROM Conteneur WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Conteneur] SET [libelle] = @libelle, [tare] = @tare WHERE (([id] = @Original_id) AND ((@IsNull_libelle = 1 AND [libelle] IS NULL) OR ([libelle] = @Original_libelle)) AND ((@IsNull_tare = 1 AND [tare] IS NULL) OR ([tare] = @Original_tare)));
+SELECT id, libelle, tare FROM Conteneur WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@libelle", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "libelle", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tare", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tare", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_libelle", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "libelle", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_libelle", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "libelle", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_tare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tare", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tare", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tare", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -5944,7 +5950,7 @@ SELECT id, client_id, service_id FROM client_service WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, libelle FROM dbo.Conteneur";
+            this._commandCollection[0].CommandText = "SELECT id, libelle,tare FROM dbo.Conteneur";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6005,7 +6011,7 @@ SELECT id, client_id, service_id FROM client_service WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, string Original_libelle) {
+        public virtual int Delete(int Original_id, string Original_libelle, global::System.Nullable<double> Original_tare) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_libelle == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -6014,6 +6020,14 @@ SELECT id, client_id, service_id FROM client_service WHERE (id = @id)";
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_libelle));
+            }
+            if ((Original_tare.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((double)(Original_tare.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6035,12 +6049,18 @@ SELECT id, client_id, service_id FROM client_service WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string libelle) {
+        public virtual int Insert(string libelle, global::System.Nullable<double> tare) {
             if ((libelle == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(libelle));
+            }
+            if ((tare.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((double)(tare.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6062,23 +6082,37 @@ SELECT id, client_id, service_id FROM client_service WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string libelle, int Original_id, string Original_libelle, int id) {
+        public virtual int Update(string libelle, global::System.Nullable<double> tare, int Original_id, string Original_libelle, global::System.Nullable<double> Original_tare, int id) {
             if ((libelle == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(libelle));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_id));
-            if ((Original_libelle == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            if ((tare.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((double)(tare.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_libelle));
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(id));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_id));
+            if ((Original_libelle == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_libelle));
+            }
+            if ((Original_tare.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((double)(Original_tare.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6099,8 +6133,8 @@ SELECT id, client_id, service_id FROM client_service WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string libelle, int Original_id, string Original_libelle) {
-            return this.Update(libelle, Original_id, Original_libelle, Original_id);
+        public virtual int Update(string libelle, global::System.Nullable<double> tare, int Original_id, string Original_libelle, global::System.Nullable<double> Original_tare) {
+            return this.Update(libelle, tare, Original_id, Original_libelle, Original_tare, Original_id);
         }
     }
     
@@ -7899,7 +7933,6 @@ SELECT id, nom, mdp FROM Utilisateur WHERE (id = @id)";
             tableMapping.DataSetTable = "tickets";
             tableMapping.ColumnMappings.Add("Date", "Date");
             tableMapping.ColumnMappings.Add("Poid", "Poid");
-            tableMapping.ColumnMappings.Add("Client", "Client");
             tableMapping.ColumnMappings.Add("Service", "Service");
             tableMapping.ColumnMappings.Add("Conteneur", "Conteneur");
             tableMapping.ColumnMappings.Add("Residu", "Residu");
@@ -7921,7 +7954,8 @@ SELECT id, nom, mdp FROM Utilisateur WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        e.num_serie AS 'Code barre', e.e_date AS 'Date', e.poid AS 'Poid', c.libelle AS 'Client', cs.libelle AS 'Service', c1.libelle AS 'Conteneur', r.libelle AS 'Residu', o.libelle AS 'Operateur'
+            this._commandCollection[0].CommandText = @"SELECT        e.num_serie AS 'Code barre', e.e_date AS 'Date', CAST(cs.id AS VARCHAR) + SPACE(1) + cs.libelle AS Service, CAST(c1.id AS VARCHAR) + SPACE(1) + c1.libelle AS 'Conteneur', r.libelle AS 'Residu', o.libelle AS 'Operateur', 
+                         e.poid AS 'Poid'
 FROM            Etiquette AS e INNER JOIN
                          C_Service AS cs ON e.service_id = cs.id INNER JOIN
                          Client AS c ON e.client_id = c.id INNER JOIN

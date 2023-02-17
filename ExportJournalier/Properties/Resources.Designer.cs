@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pesage.Properties {
+namespace ExportJournalier.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace pesage.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("pesage.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ExportJournalier.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,32 +61,22 @@ namespace pesage.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] daily_export {
-            get {
-                object obj = ResourceManager.GetObject("daily_export", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Inter_font {
-            get {
-                object obj = ResourceManager.GetObject("Inter_font", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon weighing_scale {
+        internal static System.Drawing.Icon export {
             get {
-                object obj = ResourceManager.GetObject("weighing_scale", resourceCulture);
+                object obj = ResourceManager.GetObject("export", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Monthly_export {
+            get {
+                object obj = ResourceManager.GetObject("Monthly_export", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

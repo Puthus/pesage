@@ -23,16 +23,6 @@ namespace pesage.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=pesage;Integrated Security=True")]
-        public string pesageConn {
-            get {
-                return ((string)(this["pesageConn"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
@@ -69,9 +59,20 @@ namespace pesage.Properties {
             }
         }
         
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TITAN-LEGION\\SQLEXPRESS;Initial Catalog=pesage;Persist Security Info=" +
+            "True;User ID=sa;Password=Eysi4Team")]
+        public string pesageConn {
+            get {
+                return ((string)(this["pesageConn"]));
+            }
+        }
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("(\\w*)?,?(\\w*)?,?([+-]?([0-9]*[.])?[0-9]+)(\\w*)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("(\\w*)?,?(\\w*)?,?([+-]?([0-9]*[.|,])?[0-9]+)(\\w*)")]
         public string regex {
             get {
                 return ((string)(this["regex"]));

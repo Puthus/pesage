@@ -34,7 +34,6 @@ namespace pesage
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTraitment = new System.Windows.Forms.TabPage();
-            this.saveTicket = new System.Windows.Forms.Button();
             this.print = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.codeBarreLib = new System.Windows.Forms.Label();
@@ -86,16 +85,9 @@ namespace pesage
             this.label6 = new System.Windows.Forms.Label();
             this.tanDonnees = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.codeBarreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.poidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serviceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.conteneurDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.residuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.operateurDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ticketsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.exportData = new System.Windows.Forms.Button();
             this.codeBarre = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.searchCodeBarre = new System.Windows.Forms.Button();
@@ -172,13 +164,12 @@ namespace pesage
             this.tabControl1.Padding = new System.Drawing.Point(15, 10);
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.ShowToolTips = true;
-            this.tabControl1.Size = new System.Drawing.Size(1078, 837);
+            this.tabControl1.Size = new System.Drawing.Size(1125, 837);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabTraitment
             // 
-            this.tabTraitment.Controls.Add(this.saveTicket);
             this.tabTraitment.Controls.Add(this.print);
             this.tabTraitment.Controls.Add(this.groupBox2);
             this.tabTraitment.Controls.Add(this.conteneurId);
@@ -200,33 +191,21 @@ namespace pesage
             this.tabTraitment.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.tabTraitment.Name = "tabTraitment";
             this.tabTraitment.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.tabTraitment.Size = new System.Drawing.Size(1070, 790);
+            this.tabTraitment.Size = new System.Drawing.Size(1117, 790);
             this.tabTraitment.TabIndex = 0;
             this.tabTraitment.Text = "Traitment";
-            this.tabTraitment.Click += new System.EventHandler(this.tabTraitment_Click);
-            // 
-            // saveTicket
-            // 
-            this.saveTicket.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.saveTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveTicket.Location = new System.Drawing.Point(876, 654);
-            this.saveTicket.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.saveTicket.Name = "saveTicket";
-            this.saveTicket.Size = new System.Drawing.Size(125, 46);
-            this.saveTicket.TabIndex = 24;
-            this.saveTicket.Text = "Valider";
-            this.saveTicket.UseVisualStyleBackColor = false;
-            this.saveTicket.Click += new System.EventHandler(this.saveTicket_Click);
             // 
             // print
             // 
-            this.print.Location = new System.Drawing.Point(722, 654);
+            this.print.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.print.Font = new System.Drawing.Font("Inter", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.print.Location = new System.Drawing.Point(876, 644);
             this.print.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.print.Name = "print";
             this.print.Size = new System.Drawing.Size(125, 46);
             this.print.TabIndex = 23;
-            this.print.Text = "Imprimer";
-            this.print.UseVisualStyleBackColor = true;
+            this.print.Text = "Valider";
+            this.print.UseVisualStyleBackColor = false;
             this.print.Click += new System.EventHandler(this.print_Click);
             // 
             // groupBox2
@@ -279,7 +258,7 @@ namespace pesage
             this.operateurId.Size = new System.Drawing.Size(264, 28);
             this.operateurId.TabIndex = 27;
             this.operateurId.ValueMember = "id";
-            this.operateurId.SelectedIndexChanged += new System.EventHandler(this.operatorLib_SelectedIndexChanged);
+            this.operateurId.SelectionChangeCommitted += new System.EventHandler(this.operatorLib_SelectionChangeCommitted);
             // 
             // operateurBindingSource
             // 
@@ -313,7 +292,7 @@ namespace pesage
             this.operateurLib.Size = new System.Drawing.Size(484, 28);
             this.operateurLib.TabIndex = 26;
             this.operateurLib.ValueMember = "id";
-            this.operateurLib.SelectedIndexChanged += new System.EventHandler(this.operatorLib_SelectedIndexChanged);
+            this.operateurLib.SelectionChangeCommitted += new System.EventHandler(this.operatorLib_SelectionChangeCommitted);
             // 
             // label17
             // 
@@ -370,7 +349,7 @@ namespace pesage
             this.conteneurId.Size = new System.Drawing.Size(264, 28);
             this.conteneurId.TabIndex = 13;
             this.conteneurId.ValueMember = "id";
-            this.conteneurId.SelectedIndexChanged += new System.EventHandler(this.conteneurLib_SelectedIndexChanged);
+            this.conteneurId.SelectionChangeCommitted += new System.EventHandler(this.conteneurLib_SelectionChangeCommitted);
             // 
             // conteneurBindingSource
             // 
@@ -389,7 +368,7 @@ namespace pesage
             this.residuId.Size = new System.Drawing.Size(264, 28);
             this.residuId.TabIndex = 14;
             this.residuId.ValueMember = "id";
-            this.residuId.SelectedIndexChanged += new System.EventHandler(this.residuLib_SelectedIndexChanged);
+            this.residuId.SelectionChangeCommitted += new System.EventHandler(this.residuLib_SelectionChangeCommitted);
             // 
             // residuBindingSource
             // 
@@ -408,7 +387,7 @@ namespace pesage
             this.serviceId.Size = new System.Drawing.Size(264, 28);
             this.serviceId.TabIndex = 15;
             this.serviceId.ValueMember = "id";
-            this.serviceId.SelectedIndexChanged += new System.EventHandler(this.serviceLib_SelectedIndexChanged);
+            this.serviceId.SelectionChangeCommitted += new System.EventHandler(this.serviceLib_SelectionChangeCommitted);
             // 
             // cServiceBindingSource
             // 
@@ -432,7 +411,7 @@ namespace pesage
             this.clientId.Size = new System.Drawing.Size(264, 28);
             this.clientId.TabIndex = 16;
             this.clientId.ValueMember = "id";
-            this.clientId.SelectedIndexChanged += new System.EventHandler(this.clientLib_SelectedIndexChanged);
+            this.clientId.SelectionChangeCommitted += new System.EventHandler(this.clientLib_SelectionChangeCommitted);
             // 
             // clientBindingSource
             // 
@@ -451,7 +430,7 @@ namespace pesage
             this.conteneurLib.Size = new System.Drawing.Size(484, 28);
             this.conteneurLib.TabIndex = 9;
             this.conteneurLib.ValueMember = "id";
-            this.conteneurLib.SelectedIndexChanged += new System.EventHandler(this.conteneurLib_SelectedIndexChanged);
+            this.conteneurLib.SelectionChangeCommitted += new System.EventHandler(this.conteneurLib_SelectionChangeCommitted);
             // 
             // residuLib
             // 
@@ -465,7 +444,7 @@ namespace pesage
             this.residuLib.Size = new System.Drawing.Size(484, 28);
             this.residuLib.TabIndex = 10;
             this.residuLib.ValueMember = "id";
-            this.residuLib.SelectedIndexChanged += new System.EventHandler(this.residuLib_SelectedIndexChanged);
+            this.residuLib.SelectionChangeCommitted += new System.EventHandler(this.residuLib_SelectionChangeCommitted);
             // 
             // serviceLib
             // 
@@ -479,7 +458,7 @@ namespace pesage
             this.serviceLib.Size = new System.Drawing.Size(484, 28);
             this.serviceLib.TabIndex = 11;
             this.serviceLib.ValueMember = "id";
-            this.serviceLib.SelectedIndexChanged += new System.EventHandler(this.serviceLib_SelectedIndexChanged);
+            this.serviceLib.SelectionChangeCommitted += new System.EventHandler(this.serviceLib_SelectionChangeCommitted);
             // 
             // clientLib
             // 
@@ -493,7 +472,7 @@ namespace pesage
             this.clientLib.Size = new System.Drawing.Size(484, 28);
             this.clientLib.TabIndex = 12;
             this.clientLib.ValueMember = "id";
-            this.clientLib.SelectedIndexChanged += new System.EventHandler(this.clientLib_SelectedIndexChanged);
+            this.clientLib.SelectionChangeCommitted += new System.EventHandler(this.clientLib_SelectionChangeCommitted);
             // 
             // label5
             // 
@@ -569,7 +548,7 @@ namespace pesage
             this.tabList.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.tabList.Name = "tabList";
             this.tabList.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.tabList.Size = new System.Drawing.Size(1070, 790);
+            this.tabList.Size = new System.Drawing.Size(1117, 790);
             this.tabList.TabIndex = 1;
             this.tabList.Text = " Lists";
             this.tabList.UseVisualStyleBackColor = true;
@@ -780,7 +759,7 @@ namespace pesage
             this.tanDonnees.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.tanDonnees.Name = "tanDonnees";
             this.tanDonnees.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.tanDonnees.Size = new System.Drawing.Size(1070, 790);
+            this.tanDonnees.Size = new System.Drawing.Size(1117, 790);
             this.tanDonnees.TabIndex = 2;
             this.tanDonnees.Text = "Données";
             this.tanDonnees.UseVisualStyleBackColor = true;
@@ -790,19 +769,8 @@ namespace pesage
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codeBarreDataGridViewTextBoxColumn,
-            this.dateDataGridViewTextBoxColumn,
-            this.poidDataGridViewTextBoxColumn1,
-            this.clientDataGridViewTextBoxColumn,
-            this.serviceDataGridViewTextBoxColumn,
-            this.conteneurDataGridViewTextBoxColumn,
-            this.residuDataGridViewTextBoxColumn,
-            this.operateurDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.ticketsBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(7, 6);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -812,64 +780,8 @@ namespace pesage
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1056, 614);
+            this.dataGridView1.Size = new System.Drawing.Size(1103, 616);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // codeBarreDataGridViewTextBoxColumn
-            // 
-            this.codeBarreDataGridViewTextBoxColumn.DataPropertyName = "Code barre";
-            this.codeBarreDataGridViewTextBoxColumn.HeaderText = "Code barre";
-            this.codeBarreDataGridViewTextBoxColumn.Name = "codeBarreDataGridViewTextBoxColumn";
-            this.codeBarreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // poidDataGridViewTextBoxColumn1
-            // 
-            this.poidDataGridViewTextBoxColumn1.DataPropertyName = "Poid";
-            this.poidDataGridViewTextBoxColumn1.HeaderText = "Poid";
-            this.poidDataGridViewTextBoxColumn1.Name = "poidDataGridViewTextBoxColumn1";
-            this.poidDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // clientDataGridViewTextBoxColumn
-            // 
-            this.clientDataGridViewTextBoxColumn.DataPropertyName = "Client";
-            this.clientDataGridViewTextBoxColumn.HeaderText = "Client";
-            this.clientDataGridViewTextBoxColumn.Name = "clientDataGridViewTextBoxColumn";
-            this.clientDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // serviceDataGridViewTextBoxColumn
-            // 
-            this.serviceDataGridViewTextBoxColumn.DataPropertyName = "Service";
-            this.serviceDataGridViewTextBoxColumn.HeaderText = "Service";
-            this.serviceDataGridViewTextBoxColumn.Name = "serviceDataGridViewTextBoxColumn";
-            this.serviceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // conteneurDataGridViewTextBoxColumn
-            // 
-            this.conteneurDataGridViewTextBoxColumn.DataPropertyName = "Conteneur";
-            this.conteneurDataGridViewTextBoxColumn.HeaderText = "Conteneur";
-            this.conteneurDataGridViewTextBoxColumn.Name = "conteneurDataGridViewTextBoxColumn";
-            this.conteneurDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // residuDataGridViewTextBoxColumn
-            // 
-            this.residuDataGridViewTextBoxColumn.DataPropertyName = "Residu";
-            this.residuDataGridViewTextBoxColumn.HeaderText = "Residu";
-            this.residuDataGridViewTextBoxColumn.Name = "residuDataGridViewTextBoxColumn";
-            this.residuDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // operateurDataGridViewTextBoxColumn
-            // 
-            this.operateurDataGridViewTextBoxColumn.DataPropertyName = "Operateur";
-            this.operateurDataGridViewTextBoxColumn.HeaderText = "Operateur";
-            this.operateurDataGridViewTextBoxColumn.Name = "operateurDataGridViewTextBoxColumn";
-            this.operateurDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // ticketsBindingSource
             // 
@@ -879,6 +791,7 @@ namespace pesage
             // groupBox3
             // 
             this.groupBox3.AutoSize = true;
+            this.groupBox3.Controls.Add(this.exportData);
             this.groupBox3.Controls.Add(this.codeBarre);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.searchCodeBarre);
@@ -888,17 +801,27 @@ namespace pesage
             this.groupBox3.Controls.Add(this.dateFin);
             this.groupBox3.Controls.Add(this.dateDebut);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox3.Location = new System.Drawing.Point(7, 620);
+            this.groupBox3.Location = new System.Drawing.Point(7, 622);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.groupBox3.Size = new System.Drawing.Size(1056, 164);
+            this.groupBox3.Size = new System.Drawing.Size(1103, 162);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
+            // exportData
+            // 
+            this.exportData.Location = new System.Drawing.Point(911, 104);
+            this.exportData.Name = "exportData";
+            this.exportData.Size = new System.Drawing.Size(184, 30);
+            this.exportData.TabIndex = 8;
+            this.exportData.Text = "Exporter";
+            this.exportData.UseVisualStyleBackColor = true;
+            this.exportData.Click += new System.EventHandler(this.exportData_Click);
+            // 
             // codeBarre
             // 
-            this.codeBarre.Location = new System.Drawing.Point(660, 35);
+            this.codeBarre.Location = new System.Drawing.Point(779, 28);
             this.codeBarre.Name = "codeBarre";
             this.codeBarre.Size = new System.Drawing.Size(316, 27);
             this.codeBarre.TabIndex = 7;
@@ -908,7 +831,7 @@ namespace pesage
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(549, 42);
+            this.label12.Location = new System.Drawing.Point(673, 30);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(100, 22);
             this.label12.TabIndex = 6;
@@ -917,10 +840,10 @@ namespace pesage
             // 
             // searchCodeBarre
             // 
-            this.searchCodeBarre.Location = new System.Drawing.Point(650, 102);
+            this.searchCodeBarre.Location = new System.Drawing.Point(779, 62);
             this.searchCodeBarre.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.searchCodeBarre.Name = "searchCodeBarre";
-            this.searchCodeBarre.Size = new System.Drawing.Size(326, 34);
+            this.searchCodeBarre.Size = new System.Drawing.Size(316, 34);
             this.searchCodeBarre.TabIndex = 5;
             this.searchCodeBarre.Text = "Rechercher par code barre";
             this.searchCodeBarre.UseVisualStyleBackColor = true;
@@ -929,7 +852,7 @@ namespace pesage
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(36, 72);
+            this.label14.Location = new System.Drawing.Point(36, 68);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label14.Size = new System.Drawing.Size(72, 22);
@@ -940,7 +863,7 @@ namespace pesage
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(9, 35);
+            this.label13.Location = new System.Drawing.Point(9, 30);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(98, 22);
             this.label13.TabIndex = 3;
@@ -949,10 +872,10 @@ namespace pesage
             // 
             // searchbyDate
             // 
-            this.searchbyDate.Location = new System.Drawing.Point(98, 102);
+            this.searchbyDate.Location = new System.Drawing.Point(121, 100);
             this.searchbyDate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.searchbyDate.Name = "searchbyDate";
-            this.searchbyDate.Size = new System.Drawing.Size(326, 34);
+            this.searchbyDate.Size = new System.Drawing.Size(303, 34);
             this.searchbyDate.TabIndex = 2;
             this.searchbyDate.Text = "Rechercher par date";
             this.searchbyDate.UseVisualStyleBackColor = true;
@@ -965,15 +888,17 @@ namespace pesage
             this.dateFin.Name = "dateFin";
             this.dateFin.Size = new System.Drawing.Size(303, 27);
             this.dateFin.TabIndex = 1;
+            this.dateFin.ValueChanged += new System.EventHandler(this.dateFin_ValueChanged);
             // 
             // dateDebut
             // 
             this.dateDebut.Checked = false;
-            this.dateDebut.Location = new System.Drawing.Point(121, 30);
+            this.dateDebut.Location = new System.Drawing.Point(121, 28);
             this.dateDebut.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dateDebut.Name = "dateDebut";
             this.dateDebut.Size = new System.Drawing.Size(303, 27);
             this.dateDebut.TabIndex = 0;
+            this.dateDebut.ValueChanged += new System.EventHandler(this.dateDebut_ValueChanged);
             // 
             // tabPage4
             // 
@@ -990,7 +915,7 @@ namespace pesage
             this.tabPage4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPage4.Size = new System.Drawing.Size(1070, 790);
+            this.tabPage4.Size = new System.Drawing.Size(1117, 790);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Config";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1000,7 +925,7 @@ namespace pesage
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(62, 143);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(78, 21);
+            this.label20.Size = new System.Drawing.Size(77, 22);
             this.label20.TabIndex = 23;
             this.label20.Text = "Regex : ";
             // 
@@ -1009,8 +934,9 @@ namespace pesage
             this.regexTxt.Location = new System.Drawing.Point(175, 140);
             this.regexTxt.Name = "regexTxt";
             this.regexTxt.ReadOnly = true;
-            this.regexTxt.Size = new System.Drawing.Size(392, 28);
+            this.regexTxt.Size = new System.Drawing.Size(392, 27);
             this.regexTxt.TabIndex = 22;
+            this.regexTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.regexTxt_KeyPress);
             // 
             // saveConf
             // 
@@ -1025,6 +951,16 @@ namespace pesage
             // yOffsetNumeric
             // 
             this.yOffsetNumeric.Location = new System.Drawing.Point(175, 106);
+            this.yOffsetNumeric.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.yOffsetNumeric.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
             this.yOffsetNumeric.Name = "yOffsetNumeric";
             this.yOffsetNumeric.Size = new System.Drawing.Size(120, 27);
             this.yOffsetNumeric.TabIndex = 20;
@@ -1041,6 +977,16 @@ namespace pesage
             // xOffsetNumeric
             // 
             this.xOffsetNumeric.Location = new System.Drawing.Point(175, 69);
+            this.xOffsetNumeric.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.xOffsetNumeric.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
             this.xOffsetNumeric.Name = "xOffsetNumeric";
             this.xOffsetNumeric.Size = new System.Drawing.Size(120, 27);
             this.xOffsetNumeric.TabIndex = 18;
@@ -1071,7 +1017,7 @@ namespace pesage
             this.comPortBox.Name = "comPortBox";
             this.comPortBox.Size = new System.Drawing.Size(120, 28);
             this.comPortBox.TabIndex = 7;
-            this.comPortBox.SelectedIndexChanged += new System.EventHandler(this.comPortBox_SelectedIndexChanged);
+            this.comPortBox.SelectionChangeCommitted += new System.EventHandler(this.comPortBox_SelectionChangeCommitted);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -1185,7 +1131,7 @@ namespace pesage
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1078, 837);
+            this.ClientSize = new System.Drawing.Size(1125, 837);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1285,7 +1231,6 @@ namespace pesage
         private System.Windows.Forms.DataGridViewTextBoxColumn expr2DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn expr3DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn expr4DataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button saveTicket;
         private System.Windows.Forms.Button print;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label15;
@@ -1312,14 +1257,7 @@ namespace pesage
         private System.Windows.Forms.TextBox codeBarre;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button searchCodeBarre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codeBarreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn poidDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn serviceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn conteneurDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn residuDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn operateurDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource ticketsBindingSource;
         private pesageDataSetTableAdapters.EtiquetteTableAdapter etiquetteTableAdapter;
         private System.Windows.Forms.Label label16;
@@ -1329,6 +1267,7 @@ namespace pesage
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox regexTxt;
         private System.Windows.Forms.Button saveConf;
+        private System.Windows.Forms.Button exportData;
     }
 }
 
